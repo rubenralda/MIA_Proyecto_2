@@ -1,0 +1,75 @@
+.editor {
+    display: inline-flex;
+    gap: 10px;
+    font-family: monospace;
+    line-height: 21px;
+    background: #282a3a;
+    border-radius: 2px;
+    padding: 20px 10px;
+  }
+  
+#textComandos {
+    line-height: 21px;
+    overflow: auto;
+    padding: 0;
+    border: 0;
+    background: #282a3a;
+    color: #FFF;
+    min-width: 500px;
+    width: 100%;
+    outline: none;
+    resize: none;
+}
+
+.line-numbers {
+    width: 20px;
+    text-align: right;
+  }
+  
+  .line-numbers span {
+    counter-increment: linenumber;
+  }
+  
+  .line-numbers span::before {
+    content: counter(linenumber);
+    display: block;
+    color: #506882;
+  }
+
+.consola {
+    display: inline-flex;
+    gap: 10px;
+    font-family: monospace;
+    line-height: 21px;
+    background: #282a3a;
+    border-radius: 2px;
+    padding: 20px 10px;
+  }
+  
+#textSalida {
+    line-height: 21px;
+    overflow-y: auto;
+    padding: 0;
+    border: 0;
+    background: #282a3a;
+    color: #FFF;
+    min-width: 500px;
+    width: 100%;
+    outline: none;
+    resize: none;
+}
+
+.line-numbers-consola {
+    width: 20px;
+    text-align: right;
+  }
+  
+  .line-numbers-consola span {
+    counter-increment: linenumber;
+  }
+  
+  .line-numbers-consola span::before {
+    content: counter(linenumber);
+    display: block;
+    color: #506882;
+  }

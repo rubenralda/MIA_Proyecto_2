@@ -1,0 +1,2887 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COPY
+    FIND
+    MOVE
+
+Grammar
+
+Rule 0     S' -> comandos
+Rule 1     comandos -> comando_mkdisk
+Rule 2     comandos -> comando_execute
+Rule 3     comandos -> comando_rep
+Rule 4     comandos -> empty_production
+Rule 5     comandos -> comando_fdisk
+Rule 6     comandos -> comando_rmdisk
+Rule 7     comandos -> comando_mount
+Rule 8     comandos -> comando_mountlist
+Rule 9     comandos -> comando_unmount
+Rule 10    comandos -> comando_mkfs
+Rule 11    comandos -> comando_pause
+Rule 12    comandos -> comando_login
+Rule 13    comandos -> comando_logout
+Rule 14    comandos -> comando_mkgrp
+Rule 15    comandos -> comando_rmgrp
+Rule 16    comandos -> comando_rmusr
+Rule 17    comandos -> comando_mkusr
+Rule 18    comandos -> comando_mkfile
+Rule 19    comandos -> comando_cat
+Rule 20    comandos -> comando_mkdir
+Rule 21    comandos -> comando_remove
+Rule 22    comandos -> comando_edit
+Rule 23    comandos -> comando_rename
+Rule 24    empty_production -> <empty>
+Rule 25    comando_mkdisk -> MKDISK lista_mkdisk
+Rule 26    lista_mkdisk -> lista_mkdisk parametros_mkdisk
+Rule 27    lista_mkdisk -> parametros_mkdisk
+Rule 28    parametros_mkdisk -> param_size
+Rule 29    parametros_mkdisk -> param_unit
+Rule 30    parametros_mkdisk -> param_path
+Rule 31    parametros_mkdisk -> param_fit
+Rule 32    comando_rmdisk -> RMDISK lista_rmdisk
+Rule 33    lista_rmdisk -> lista_rmdisk parametros_rmdisk
+Rule 34    lista_rmdisk -> parametros_rmdisk
+Rule 35    parametros_rmdisk -> param_path
+Rule 36    comando_execute -> EXECUTE lista_execute
+Rule 37    lista_execute -> lista_execute parametros_execute
+Rule 38    lista_execute -> parametros_execute
+Rule 39    parametros_execute -> param_path
+Rule 40    comando_mount -> MOUNT lista_mount
+Rule 41    lista_mount -> lista_mount parametros_mount
+Rule 42    lista_mount -> parametros_mount
+Rule 43    parametros_mount -> param_path
+Rule 44    parametros_mount -> param_name
+Rule 45    comando_rep -> REP lista_rep
+Rule 46    lista_rep -> lista_rep parametros_rep
+Rule 47    lista_rep -> parametros_rep
+Rule 48    parametros_rep -> param_path
+Rule 49    parametros_rep -> param_name
+Rule 50    parametros_rep -> param_id
+Rule 51    parametros_rep -> param_ruta
+Rule 52    parametros_rep -> param_ruta2
+Rule 53    comando_fdisk -> FDISK lista_fdisk
+Rule 54    lista_fdisk -> lista_fdisk parametros_fdisk
+Rule 55    lista_fdisk -> parametros_fdisk
+Rule 56    parametros_fdisk -> param_size
+Rule 57    parametros_fdisk -> param_path
+Rule 58    parametros_fdisk -> param_name
+Rule 59    parametros_fdisk -> param_unit
+Rule 60    parametros_fdisk -> param_type
+Rule 61    parametros_fdisk -> param_fit
+Rule 62    parametros_fdisk -> param_delete
+Rule 63    parametros_fdisk -> param_add
+Rule 64    comando_mountlist -> MOUNT_LIST
+Rule 65    comando_unmount -> UNMOUNT lista_unmount
+Rule 66    lista_unmount -> lista_unmount parametros_unmount
+Rule 67    lista_unmount -> parametros_unmount
+Rule 68    parametros_unmount -> param_id
+Rule 69    comando_mkfs -> MKFS lista_mkfs
+Rule 70    lista_mkfs -> lista_mkfs parametros_mkfs
+Rule 71    lista_mkfs -> parametros_mkfs
+Rule 72    parametros_mkfs -> param_id
+Rule 73    parametros_mkfs -> param_type
+Rule 74    parametros_mkfs -> param_fs
+Rule 75    comando_pause -> PAUSE
+Rule 76    comando_login -> LOGIN lista_login
+Rule 77    lista_login -> lista_login parametros_login
+Rule 78    lista_login -> parametros_login
+Rule 79    parametros_login -> param_id
+Rule 80    parametros_login -> param_user
+Rule 81    parametros_login -> param_pass
+Rule 82    comando_logout -> LOGOUT
+Rule 83    comando_mkgrp -> MKGRP lista_mkgrp
+Rule 84    lista_mkgrp -> lista_mkgrp parametros_mkgrp
+Rule 85    lista_mkgrp -> parametros_mkgrp
+Rule 86    parametros_mkgrp -> param_name
+Rule 87    parametros_mkgrp -> param_name__cadena
+Rule 88    comando_rmgrp -> RMGRP lista_rmgrp
+Rule 89    lista_rmgrp -> lista_rmgrp parametros_rmgrp
+Rule 90    lista_rmgrp -> parametros_rmgrp
+Rule 91    parametros_rmgrp -> param_name
+Rule 92    parametros_rmgrp -> param_name__cadena
+Rule 93    comando_mkusr -> MKUSR lista_mkusr
+Rule 94    lista_mkusr -> lista_mkusr parametros_mkusr
+Rule 95    lista_mkusr -> parametros_mkusr
+Rule 96    parametros_mkusr -> param_user
+Rule 97    parametros_mkusr -> param_grp
+Rule 98    parametros_mkusr -> param_pass
+Rule 99    comando_rmusr -> RMUSR lista_rmusr
+Rule 100   lista_rmusr -> lista_rmusr parametros_rmusr
+Rule 101   lista_rmusr -> parametros_rmusr
+Rule 102   parametros_rmusr -> param_user
+Rule 103   comando_mkfile -> MKFILE lista_mkfile
+Rule 104   lista_mkfile -> lista_mkfile parametros_mkfile
+Rule 105   lista_mkfile -> parametros_mkfile
+Rule 106   parametros_mkfile -> param_path
+Rule 107   parametros_mkfile -> param_size
+Rule 108   parametros_mkfile -> param_cont
+Rule 109   parametros_mkfile -> param_r
+Rule 110   comando_cat -> CAT lista_cat
+Rule 111   lista_cat -> lista_cat parametros_cat
+Rule 112   lista_cat -> parametros_cat
+Rule 113   parametros_cat -> param_filen
+Rule 114   comando_mkdir -> MKDIR lista_mkdir
+Rule 115   lista_mkdir -> lista_mkdir parametros_mkdir
+Rule 116   lista_mkdir -> parametros_mkdir
+Rule 117   parametros_mkdir -> param_path2
+Rule 118   parametros_mkdir -> param_r
+Rule 119   comando_remove -> REMOVE lista_remove
+Rule 120   lista_remove -> lista_remove parametros_remove
+Rule 121   lista_remove -> parametros_remove
+Rule 122   parametros_remove -> param_path
+Rule 123   parametros_remove -> param_path2
+Rule 124   comando_edit -> EDIT lista_edit
+Rule 125   lista_edit -> lista_edit parametros_edit
+Rule 126   lista_edit -> parametros_edit
+Rule 127   parametros_edit -> param_path
+Rule 128   parametros_edit -> param_cont
+Rule 129   comando_rename -> RENAME lista_rename
+Rule 130   lista_rename -> lista_rename parametros_rename
+Rule 131   lista_rename -> parametros_rename
+Rule 132   parametros_rename -> param_name_2
+Rule 133   parametros_rename -> param_name
+Rule 134   parametros_rename -> param_path
+Rule 135   parametros_rename -> param_path2
+Rule 136   param_size -> GUION SIZE IGUAL ENTERO
+Rule 137   param_path -> GUION PATH IGUAL CADENA_FILE_PATH
+Rule 138   param_path -> GUION PATH IGUAL FILE_PATH
+Rule 139   param_unit -> GUION UNIT IGUAL ID
+Rule 140   param_name -> GUION NAME IGUAL ID
+Rule 141   param_fit -> GUION FIT IGUAL ID
+Rule 142   param_type -> GUION TYPE IGUAL ID
+Rule 143   param_delete -> GUION DELETE IGUAL ID
+Rule 144   param_add -> GUION ADD IGUAL ENTERO
+Rule 145   param_add -> GUION ADD IGUAL entero_negativo
+Rule 146   param_id -> GUION ID_WORD IGUAL ID_PAR
+Rule 147   param_fs -> GUION FS IGUAL 2FS
+Rule 148   param_fs -> GUION FS IGUAL 3FS
+Rule 149   param_user -> GUION USER IGUAL ID
+Rule 150   param_user -> GUION USER IGUAL CADENA_SIMPLE
+Rule 151   param_pass -> GUION PASS IGUAL ID
+Rule 152   param_pass -> GUION PASS IGUAL ENTERO
+Rule 153   param_grp -> GUION GRP IGUAL ID
+Rule 154   param_grp -> GUION GRP IGUAL CADENA_SIMPLE
+Rule 155   param_r -> GUION R
+Rule 156   param_cont -> GUION CONT IGUAL CADENA_FILE_PATH
+Rule 157   param_cont -> GUION CONT IGUAL FILE_PATH
+Rule 158   param_filen -> GUION ID IGUAL CADENA_FILE_PATH
+Rule 159   param_filen -> GUION ID IGUAL FILE_PATH
+Rule 160   param_path2 -> GUION PATH IGUAL CADENA_DIR_PATH
+Rule 161   param_path2 -> GUION PATH IGUAL DIR_PATH
+Rule 162   param_name_2 -> GUION NAME IGUAL NAME_2
+Rule 163   param_ruta -> GUION RUTA IGUAL CADENA_FILE_PATH
+Rule 164   param_ruta -> GUION RUTA IGUAL FILE_PATH
+Rule 165   param_ruta2 -> GUION RUTA IGUAL CADENA_DIR_PATH
+Rule 166   param_ruta2 -> GUION RUTA IGUAL DIR_PATH
+Rule 167   param_name__cadena -> GUION NAME IGUAL CADENA_SIMPLE
+Rule 168   entero_negativo -> GUION ENTERO
+
+Terminals, with rules where they appear
+
+2FS                  : 147
+3FS                  : 148
+ADD                  : 144 145
+CADENA_DIR_PATH      : 160 165
+CADENA_FILE_PATH     : 137 156 158 163
+CADENA_SIMPLE        : 150 154 167
+CAT                  : 110
+CONT                 : 156 157
+COPY                 : 
+DELETE               : 143
+DIR_PATH             : 161 166
+EDIT                 : 124
+ENTERO               : 136 144 152 168
+EXECUTE              : 36
+FDISK                : 53
+FILE_PATH            : 138 157 159 164
+FIND                 : 
+FIT                  : 141
+FS                   : 147 148
+GRP                  : 153 154
+GUION                : 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168
+ID                   : 139 140 141 142 143 149 151 153 158 159
+ID_PAR               : 146
+ID_WORD              : 146
+IGUAL                : 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 156 157 158 159 160 161 162 163 164 165 166 167
+LOGIN                : 76
+LOGOUT               : 82
+MKDIR                : 114
+MKDISK               : 25
+MKFILE               : 103
+MKFS                 : 69
+MKGRP                : 83
+MKUSR                : 93
+MOUNT                : 40
+MOUNT_LIST           : 64
+MOVE                 : 
+NAME                 : 140 162 167
+NAME_2               : 162
+PASS                 : 151 152
+PATH                 : 137 138 160 161
+PAUSE                : 75
+R                    : 155
+REMOVE               : 119
+RENAME               : 129
+REP                  : 45
+RMDISK               : 32
+RMGRP                : 88
+RMUSR                : 99
+RUTA                 : 163 164 165 166
+SIZE                 : 136
+TYPE                 : 142
+UNIT                 : 139
+UNMOUNT              : 65
+USER                 : 149 150
+error                : 
+
+Nonterminals, with rules where they appear
+
+comando_cat          : 19
+comando_edit         : 22
+comando_execute      : 2
+comando_fdisk        : 5
+comando_login        : 12
+comando_logout       : 13
+comando_mkdir        : 20
+comando_mkdisk       : 1
+comando_mkfile       : 18
+comando_mkfs         : 10
+comando_mkgrp        : 14
+comando_mkusr        : 17
+comando_mount        : 7
+comando_mountlist    : 8
+comando_pause        : 11
+comando_remove       : 21
+comando_rename       : 23
+comando_rep          : 3
+comando_rmdisk       : 6
+comando_rmgrp        : 15
+comando_rmusr        : 16
+comando_unmount      : 9
+comandos             : 0
+empty_production     : 4
+entero_negativo      : 145
+lista_cat            : 110 111
+lista_edit           : 124 125
+lista_execute        : 36 37
+lista_fdisk          : 53 54
+lista_login          : 76 77
+lista_mkdir          : 114 115
+lista_mkdisk         : 25 26
+lista_mkfile         : 103 104
+lista_mkfs           : 69 70
+lista_mkgrp          : 83 84
+lista_mkusr          : 93 94
+lista_mount          : 40 41
+lista_remove         : 119 120
+lista_rename         : 129 130
+lista_rep            : 45 46
+lista_rmdisk         : 32 33
+lista_rmgrp          : 88 89
+lista_rmusr          : 99 100
+lista_unmount        : 65 66
+param_add            : 63
+param_cont           : 108 128
+param_delete         : 62
+param_filen          : 113
+param_fit            : 31 61
+param_fs             : 74
+param_grp            : 97
+param_id             : 50 68 72 79
+param_name           : 44 49 58 86 91 133
+param_name_2         : 132
+param_name__cadena   : 87 92
+param_pass           : 81 98
+param_path           : 30 35 39 43 48 57 106 122 127 134
+param_path2          : 117 123 135
+param_r              : 109 118
+param_ruta           : 51
+param_ruta2          : 52
+param_size           : 28 56 107
+param_type           : 60 73
+param_unit           : 29 59
+param_user           : 80 96 102
+parametros_cat       : 111 112
+parametros_edit      : 125 126
+parametros_execute   : 37 38
+parametros_fdisk     : 54 55
+parametros_login     : 77 78
+parametros_mkdir     : 115 116
+parametros_mkdisk    : 26 27
+parametros_mkfile    : 104 105
+parametros_mkfs      : 70 71
+parametros_mkgrp     : 84 85
+parametros_mkusr     : 94 95
+parametros_mount     : 41 42
+parametros_remove    : 120 121
+parametros_rename    : 130 131
+parametros_rep       : 46 47
+parametros_rmdisk    : 33 34
+parametros_rmgrp     : 89 90
+parametros_rmusr     : 100 101
+parametros_unmount   : 66 67
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . comandos
+    (1) comandos -> . comando_mkdisk
+    (2) comandos -> . comando_execute
+    (3) comandos -> . comando_rep
+    (4) comandos -> . empty_production
+    (5) comandos -> . comando_fdisk
+    (6) comandos -> . comando_rmdisk
+    (7) comandos -> . comando_mount
+    (8) comandos -> . comando_mountlist
+    (9) comandos -> . comando_unmount
+    (10) comandos -> . comando_mkfs
+    (11) comandos -> . comando_pause
+    (12) comandos -> . comando_login
+    (13) comandos -> . comando_logout
+    (14) comandos -> . comando_mkgrp
+    (15) comandos -> . comando_rmgrp
+    (16) comandos -> . comando_rmusr
+    (17) comandos -> . comando_mkusr
+    (18) comandos -> . comando_mkfile
+    (19) comandos -> . comando_cat
+    (20) comandos -> . comando_mkdir
+    (21) comandos -> . comando_remove
+    (22) comandos -> . comando_edit
+    (23) comandos -> . comando_rename
+    (25) comando_mkdisk -> . MKDISK lista_mkdisk
+    (36) comando_execute -> . EXECUTE lista_execute
+    (45) comando_rep -> . REP lista_rep
+    (24) empty_production -> .
+    (53) comando_fdisk -> . FDISK lista_fdisk
+    (32) comando_rmdisk -> . RMDISK lista_rmdisk
+    (40) comando_mount -> . MOUNT lista_mount
+    (64) comando_mountlist -> . MOUNT_LIST
+    (65) comando_unmount -> . UNMOUNT lista_unmount
+    (69) comando_mkfs -> . MKFS lista_mkfs
+    (75) comando_pause -> . PAUSE
+    (76) comando_login -> . LOGIN lista_login
+    (82) comando_logout -> . LOGOUT
+    (83) comando_mkgrp -> . MKGRP lista_mkgrp
+    (88) comando_rmgrp -> . RMGRP lista_rmgrp
+    (99) comando_rmusr -> . RMUSR lista_rmusr
+    (93) comando_mkusr -> . MKUSR lista_mkusr
+    (103) comando_mkfile -> . MKFILE lista_mkfile
+    (110) comando_cat -> . CAT lista_cat
+    (114) comando_mkdir -> . MKDIR lista_mkdir
+    (119) comando_remove -> . REMOVE lista_remove
+    (124) comando_edit -> . EDIT lista_edit
+    (129) comando_rename -> . RENAME lista_rename
+
+    MKDISK          shift and go to state 25
+    EXECUTE         shift and go to state 26
+    REP             shift and go to state 27
+    $end            reduce using rule 24 (empty_production -> .)
+    FDISK           shift and go to state 28
+    RMDISK          shift and go to state 29
+    MOUNT           shift and go to state 30
+    MOUNT_LIST      shift and go to state 31
+    UNMOUNT         shift and go to state 32
+    MKFS            shift and go to state 33
+    PAUSE           shift and go to state 34
+    LOGIN           shift and go to state 35
+    LOGOUT          shift and go to state 36
+    MKGRP           shift and go to state 37
+    RMGRP           shift and go to state 38
+    RMUSR           shift and go to state 39
+    MKUSR           shift and go to state 40
+    MKFILE          shift and go to state 41
+    CAT             shift and go to state 42
+    MKDIR           shift and go to state 43
+    REMOVE          shift and go to state 44
+    EDIT            shift and go to state 45
+    RENAME          shift and go to state 46
+
+    comandos                       shift and go to state 1
+    comando_mkdisk                 shift and go to state 2
+    comando_execute                shift and go to state 3
+    comando_rep                    shift and go to state 4
+    empty_production               shift and go to state 5
+    comando_fdisk                  shift and go to state 6
+    comando_rmdisk                 shift and go to state 7
+    comando_mount                  shift and go to state 8
+    comando_mountlist              shift and go to state 9
+    comando_unmount                shift and go to state 10
+    comando_mkfs                   shift and go to state 11
+    comando_pause                  shift and go to state 12
+    comando_login                  shift and go to state 13
+    comando_logout                 shift and go to state 14
+    comando_mkgrp                  shift and go to state 15
+    comando_rmgrp                  shift and go to state 16
+    comando_rmusr                  shift and go to state 17
+    comando_mkusr                  shift and go to state 18
+    comando_mkfile                 shift and go to state 19
+    comando_cat                    shift and go to state 20
+    comando_mkdir                  shift and go to state 21
+    comando_remove                 shift and go to state 22
+    comando_edit                   shift and go to state 23
+    comando_rename                 shift and go to state 24
+
+state 1
+
+    (0) S' -> comandos .
+
+
+
+state 2
+
+    (1) comandos -> comando_mkdisk .
+
+    $end            reduce using rule 1 (comandos -> comando_mkdisk .)
+
+
+state 3
+
+    (2) comandos -> comando_execute .
+
+    $end            reduce using rule 2 (comandos -> comando_execute .)
+
+
+state 4
+
+    (3) comandos -> comando_rep .
+
+    $end            reduce using rule 3 (comandos -> comando_rep .)
+
+
+state 5
+
+    (4) comandos -> empty_production .
+
+    $end            reduce using rule 4 (comandos -> empty_production .)
+
+
+state 6
+
+    (5) comandos -> comando_fdisk .
+
+    $end            reduce using rule 5 (comandos -> comando_fdisk .)
+
+
+state 7
+
+    (6) comandos -> comando_rmdisk .
+
+    $end            reduce using rule 6 (comandos -> comando_rmdisk .)
+
+
+state 8
+
+    (7) comandos -> comando_mount .
+
+    $end            reduce using rule 7 (comandos -> comando_mount .)
+
+
+state 9
+
+    (8) comandos -> comando_mountlist .
+
+    $end            reduce using rule 8 (comandos -> comando_mountlist .)
+
+
+state 10
+
+    (9) comandos -> comando_unmount .
+
+    $end            reduce using rule 9 (comandos -> comando_unmount .)
+
+
+state 11
+
+    (10) comandos -> comando_mkfs .
+
+    $end            reduce using rule 10 (comandos -> comando_mkfs .)
+
+
+state 12
+
+    (11) comandos -> comando_pause .
+
+    $end            reduce using rule 11 (comandos -> comando_pause .)
+
+
+state 13
+
+    (12) comandos -> comando_login .
+
+    $end            reduce using rule 12 (comandos -> comando_login .)
+
+
+state 14
+
+    (13) comandos -> comando_logout .
+
+    $end            reduce using rule 13 (comandos -> comando_logout .)
+
+
+state 15
+
+    (14) comandos -> comando_mkgrp .
+
+    $end            reduce using rule 14 (comandos -> comando_mkgrp .)
+
+
+state 16
+
+    (15) comandos -> comando_rmgrp .
+
+    $end            reduce using rule 15 (comandos -> comando_rmgrp .)
+
+
+state 17
+
+    (16) comandos -> comando_rmusr .
+
+    $end            reduce using rule 16 (comandos -> comando_rmusr .)
+
+
+state 18
+
+    (17) comandos -> comando_mkusr .
+
+    $end            reduce using rule 17 (comandos -> comando_mkusr .)
+
+
+state 19
+
+    (18) comandos -> comando_mkfile .
+
+    $end            reduce using rule 18 (comandos -> comando_mkfile .)
+
+
+state 20
+
+    (19) comandos -> comando_cat .
+
+    $end            reduce using rule 19 (comandos -> comando_cat .)
+
+
+state 21
+
+    (20) comandos -> comando_mkdir .
+
+    $end            reduce using rule 20 (comandos -> comando_mkdir .)
+
+
+state 22
+
+    (21) comandos -> comando_remove .
+
+    $end            reduce using rule 21 (comandos -> comando_remove .)
+
+
+state 23
+
+    (22) comandos -> comando_edit .
+
+    $end            reduce using rule 22 (comandos -> comando_edit .)
+
+
+state 24
+
+    (23) comandos -> comando_rename .
+
+    $end            reduce using rule 23 (comandos -> comando_rename .)
+
+
+state 25
+
+    (25) comando_mkdisk -> MKDISK . lista_mkdisk
+    (26) lista_mkdisk -> . lista_mkdisk parametros_mkdisk
+    (27) lista_mkdisk -> . parametros_mkdisk
+    (28) parametros_mkdisk -> . param_size
+    (29) parametros_mkdisk -> . param_unit
+    (30) parametros_mkdisk -> . param_path
+    (31) parametros_mkdisk -> . param_fit
+    (136) param_size -> . GUION SIZE IGUAL ENTERO
+    (139) param_unit -> . GUION UNIT IGUAL ID
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (141) param_fit -> . GUION FIT IGUAL ID
+
+    GUION           shift and go to state 53
+
+    lista_mkdisk                   shift and go to state 47
+    parametros_mkdisk              shift and go to state 48
+    param_size                     shift and go to state 49
+    param_unit                     shift and go to state 50
+    param_path                     shift and go to state 51
+    param_fit                      shift and go to state 52
+
+state 26
+
+    (36) comando_execute -> EXECUTE . lista_execute
+    (37) lista_execute -> . lista_execute parametros_execute
+    (38) lista_execute -> . parametros_execute
+    (39) parametros_execute -> . param_path
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+
+    GUION           shift and go to state 57
+
+    lista_execute                  shift and go to state 54
+    parametros_execute             shift and go to state 55
+    param_path                     shift and go to state 56
+
+state 27
+
+    (45) comando_rep -> REP . lista_rep
+    (46) lista_rep -> . lista_rep parametros_rep
+    (47) lista_rep -> . parametros_rep
+    (48) parametros_rep -> . param_path
+    (49) parametros_rep -> . param_name
+    (50) parametros_rep -> . param_id
+    (51) parametros_rep -> . param_ruta
+    (52) parametros_rep -> . param_ruta2
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (140) param_name -> . GUION NAME IGUAL ID
+    (146) param_id -> . GUION ID_WORD IGUAL ID_PAR
+    (163) param_ruta -> . GUION RUTA IGUAL CADENA_FILE_PATH
+    (164) param_ruta -> . GUION RUTA IGUAL FILE_PATH
+    (165) param_ruta2 -> . GUION RUTA IGUAL CADENA_DIR_PATH
+    (166) param_ruta2 -> . GUION RUTA IGUAL DIR_PATH
+
+    GUION           shift and go to state 65
+
+    lista_rep                      shift and go to state 58
+    parametros_rep                 shift and go to state 59
+    param_path                     shift and go to state 60
+    param_name                     shift and go to state 61
+    param_id                       shift and go to state 62
+    param_ruta                     shift and go to state 63
+    param_ruta2                    shift and go to state 64
+
+state 28
+
+    (53) comando_fdisk -> FDISK . lista_fdisk
+    (54) lista_fdisk -> . lista_fdisk parametros_fdisk
+    (55) lista_fdisk -> . parametros_fdisk
+    (56) parametros_fdisk -> . param_size
+    (57) parametros_fdisk -> . param_path
+    (58) parametros_fdisk -> . param_name
+    (59) parametros_fdisk -> . param_unit
+    (60) parametros_fdisk -> . param_type
+    (61) parametros_fdisk -> . param_fit
+    (62) parametros_fdisk -> . param_delete
+    (63) parametros_fdisk -> . param_add
+    (136) param_size -> . GUION SIZE IGUAL ENTERO
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (140) param_name -> . GUION NAME IGUAL ID
+    (139) param_unit -> . GUION UNIT IGUAL ID
+    (142) param_type -> . GUION TYPE IGUAL ID
+    (141) param_fit -> . GUION FIT IGUAL ID
+    (143) param_delete -> . GUION DELETE IGUAL ID
+    (144) param_add -> . GUION ADD IGUAL ENTERO
+    (145) param_add -> . GUION ADD IGUAL entero_negativo
+
+    GUION           shift and go to state 76
+
+    lista_fdisk                    shift and go to state 66
+    parametros_fdisk               shift and go to state 67
+    param_size                     shift and go to state 68
+    param_path                     shift and go to state 69
+    param_name                     shift and go to state 70
+    param_unit                     shift and go to state 71
+    param_type                     shift and go to state 72
+    param_fit                      shift and go to state 73
+    param_delete                   shift and go to state 74
+    param_add                      shift and go to state 75
+
+state 29
+
+    (32) comando_rmdisk -> RMDISK . lista_rmdisk
+    (33) lista_rmdisk -> . lista_rmdisk parametros_rmdisk
+    (34) lista_rmdisk -> . parametros_rmdisk
+    (35) parametros_rmdisk -> . param_path
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+
+    GUION           shift and go to state 57
+
+    lista_rmdisk                   shift and go to state 77
+    parametros_rmdisk              shift and go to state 78
+    param_path                     shift and go to state 79
+
+state 30
+
+    (40) comando_mount -> MOUNT . lista_mount
+    (41) lista_mount -> . lista_mount parametros_mount
+    (42) lista_mount -> . parametros_mount
+    (43) parametros_mount -> . param_path
+    (44) parametros_mount -> . param_name
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (140) param_name -> . GUION NAME IGUAL ID
+
+    GUION           shift and go to state 84
+
+    lista_mount                    shift and go to state 80
+    parametros_mount               shift and go to state 81
+    param_path                     shift and go to state 82
+    param_name                     shift and go to state 83
+
+state 31
+
+    (64) comando_mountlist -> MOUNT_LIST .
+
+    $end            reduce using rule 64 (comando_mountlist -> MOUNT_LIST .)
+
+
+state 32
+
+    (65) comando_unmount -> UNMOUNT . lista_unmount
+    (66) lista_unmount -> . lista_unmount parametros_unmount
+    (67) lista_unmount -> . parametros_unmount
+    (68) parametros_unmount -> . param_id
+    (146) param_id -> . GUION ID_WORD IGUAL ID_PAR
+
+    GUION           shift and go to state 88
+
+    lista_unmount                  shift and go to state 85
+    parametros_unmount             shift and go to state 86
+    param_id                       shift and go to state 87
+
+state 33
+
+    (69) comando_mkfs -> MKFS . lista_mkfs
+    (70) lista_mkfs -> . lista_mkfs parametros_mkfs
+    (71) lista_mkfs -> . parametros_mkfs
+    (72) parametros_mkfs -> . param_id
+    (73) parametros_mkfs -> . param_type
+    (74) parametros_mkfs -> . param_fs
+    (146) param_id -> . GUION ID_WORD IGUAL ID_PAR
+    (142) param_type -> . GUION TYPE IGUAL ID
+    (147) param_fs -> . GUION FS IGUAL 2FS
+    (148) param_fs -> . GUION FS IGUAL 3FS
+
+    GUION           shift and go to state 94
+
+    lista_mkfs                     shift and go to state 89
+    parametros_mkfs                shift and go to state 90
+    param_id                       shift and go to state 91
+    param_type                     shift and go to state 92
+    param_fs                       shift and go to state 93
+
+state 34
+
+    (75) comando_pause -> PAUSE .
+
+    $end            reduce using rule 75 (comando_pause -> PAUSE .)
+
+
+state 35
+
+    (76) comando_login -> LOGIN . lista_login
+    (77) lista_login -> . lista_login parametros_login
+    (78) lista_login -> . parametros_login
+    (79) parametros_login -> . param_id
+    (80) parametros_login -> . param_user
+    (81) parametros_login -> . param_pass
+    (146) param_id -> . GUION ID_WORD IGUAL ID_PAR
+    (149) param_user -> . GUION USER IGUAL ID
+    (150) param_user -> . GUION USER IGUAL CADENA_SIMPLE
+    (151) param_pass -> . GUION PASS IGUAL ID
+    (152) param_pass -> . GUION PASS IGUAL ENTERO
+
+    GUION           shift and go to state 100
+
+    lista_login                    shift and go to state 95
+    parametros_login               shift and go to state 96
+    param_id                       shift and go to state 97
+    param_user                     shift and go to state 98
+    param_pass                     shift and go to state 99
+
+state 36
+
+    (82) comando_logout -> LOGOUT .
+
+    $end            reduce using rule 82 (comando_logout -> LOGOUT .)
+
+
+state 37
+
+    (83) comando_mkgrp -> MKGRP . lista_mkgrp
+    (84) lista_mkgrp -> . lista_mkgrp parametros_mkgrp
+    (85) lista_mkgrp -> . parametros_mkgrp
+    (86) parametros_mkgrp -> . param_name
+    (87) parametros_mkgrp -> . param_name__cadena
+    (140) param_name -> . GUION NAME IGUAL ID
+    (167) param_name__cadena -> . GUION NAME IGUAL CADENA_SIMPLE
+
+    GUION           shift and go to state 105
+
+    lista_mkgrp                    shift and go to state 101
+    parametros_mkgrp               shift and go to state 102
+    param_name                     shift and go to state 103
+    param_name__cadena             shift and go to state 104
+
+state 38
+
+    (88) comando_rmgrp -> RMGRP . lista_rmgrp
+    (89) lista_rmgrp -> . lista_rmgrp parametros_rmgrp
+    (90) lista_rmgrp -> . parametros_rmgrp
+    (91) parametros_rmgrp -> . param_name
+    (92) parametros_rmgrp -> . param_name__cadena
+    (140) param_name -> . GUION NAME IGUAL ID
+    (167) param_name__cadena -> . GUION NAME IGUAL CADENA_SIMPLE
+
+    GUION           shift and go to state 105
+
+    lista_rmgrp                    shift and go to state 106
+    parametros_rmgrp               shift and go to state 107
+    param_name                     shift and go to state 108
+    param_name__cadena             shift and go to state 109
+
+state 39
+
+    (99) comando_rmusr -> RMUSR . lista_rmusr
+    (100) lista_rmusr -> . lista_rmusr parametros_rmusr
+    (101) lista_rmusr -> . parametros_rmusr
+    (102) parametros_rmusr -> . param_user
+    (149) param_user -> . GUION USER IGUAL ID
+    (150) param_user -> . GUION USER IGUAL CADENA_SIMPLE
+
+    GUION           shift and go to state 113
+
+    lista_rmusr                    shift and go to state 110
+    parametros_rmusr               shift and go to state 111
+    param_user                     shift and go to state 112
+
+state 40
+
+    (93) comando_mkusr -> MKUSR . lista_mkusr
+    (94) lista_mkusr -> . lista_mkusr parametros_mkusr
+    (95) lista_mkusr -> . parametros_mkusr
+    (96) parametros_mkusr -> . param_user
+    (97) parametros_mkusr -> . param_grp
+    (98) parametros_mkusr -> . param_pass
+    (149) param_user -> . GUION USER IGUAL ID
+    (150) param_user -> . GUION USER IGUAL CADENA_SIMPLE
+    (153) param_grp -> . GUION GRP IGUAL ID
+    (154) param_grp -> . GUION GRP IGUAL CADENA_SIMPLE
+    (151) param_pass -> . GUION PASS IGUAL ID
+    (152) param_pass -> . GUION PASS IGUAL ENTERO
+
+    GUION           shift and go to state 119
+
+    lista_mkusr                    shift and go to state 114
+    parametros_mkusr               shift and go to state 115
+    param_user                     shift and go to state 116
+    param_grp                      shift and go to state 117
+    param_pass                     shift and go to state 118
+
+state 41
+
+    (103) comando_mkfile -> MKFILE . lista_mkfile
+    (104) lista_mkfile -> . lista_mkfile parametros_mkfile
+    (105) lista_mkfile -> . parametros_mkfile
+    (106) parametros_mkfile -> . param_path
+    (107) parametros_mkfile -> . param_size
+    (108) parametros_mkfile -> . param_cont
+    (109) parametros_mkfile -> . param_r
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (136) param_size -> . GUION SIZE IGUAL ENTERO
+    (156) param_cont -> . GUION CONT IGUAL CADENA_FILE_PATH
+    (157) param_cont -> . GUION CONT IGUAL FILE_PATH
+    (155) param_r -> . GUION R
+
+    GUION           shift and go to state 126
+
+    lista_mkfile                   shift and go to state 120
+    parametros_mkfile              shift and go to state 121
+    param_path                     shift and go to state 122
+    param_size                     shift and go to state 123
+    param_cont                     shift and go to state 124
+    param_r                        shift and go to state 125
+
+state 42
+
+    (110) comando_cat -> CAT . lista_cat
+    (111) lista_cat -> . lista_cat parametros_cat
+    (112) lista_cat -> . parametros_cat
+    (113) parametros_cat -> . param_filen
+    (158) param_filen -> . GUION ID IGUAL CADENA_FILE_PATH
+    (159) param_filen -> . GUION ID IGUAL FILE_PATH
+
+    GUION           shift and go to state 130
+
+    lista_cat                      shift and go to state 127
+    parametros_cat                 shift and go to state 128
+    param_filen                    shift and go to state 129
+
+state 43
+
+    (114) comando_mkdir -> MKDIR . lista_mkdir
+    (115) lista_mkdir -> . lista_mkdir parametros_mkdir
+    (116) lista_mkdir -> . parametros_mkdir
+    (117) parametros_mkdir -> . param_path2
+    (118) parametros_mkdir -> . param_r
+    (160) param_path2 -> . GUION PATH IGUAL CADENA_DIR_PATH
+    (161) param_path2 -> . GUION PATH IGUAL DIR_PATH
+    (155) param_r -> . GUION R
+
+    GUION           shift and go to state 135
+
+    lista_mkdir                    shift and go to state 131
+    parametros_mkdir               shift and go to state 132
+    param_path2                    shift and go to state 133
+    param_r                        shift and go to state 134
+
+state 44
+
+    (119) comando_remove -> REMOVE . lista_remove
+    (120) lista_remove -> . lista_remove parametros_remove
+    (121) lista_remove -> . parametros_remove
+    (122) parametros_remove -> . param_path
+    (123) parametros_remove -> . param_path2
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (160) param_path2 -> . GUION PATH IGUAL CADENA_DIR_PATH
+    (161) param_path2 -> . GUION PATH IGUAL DIR_PATH
+
+    GUION           shift and go to state 140
+
+    lista_remove                   shift and go to state 136
+    parametros_remove              shift and go to state 137
+    param_path                     shift and go to state 138
+    param_path2                    shift and go to state 139
+
+state 45
+
+    (124) comando_edit -> EDIT . lista_edit
+    (125) lista_edit -> . lista_edit parametros_edit
+    (126) lista_edit -> . parametros_edit
+    (127) parametros_edit -> . param_path
+    (128) parametros_edit -> . param_cont
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (156) param_cont -> . GUION CONT IGUAL CADENA_FILE_PATH
+    (157) param_cont -> . GUION CONT IGUAL FILE_PATH
+
+    GUION           shift and go to state 145
+
+    lista_edit                     shift and go to state 141
+    parametros_edit                shift and go to state 142
+    param_path                     shift and go to state 143
+    param_cont                     shift and go to state 144
+
+state 46
+
+    (129) comando_rename -> RENAME . lista_rename
+    (130) lista_rename -> . lista_rename parametros_rename
+    (131) lista_rename -> . parametros_rename
+    (132) parametros_rename -> . param_name_2
+    (133) parametros_rename -> . param_name
+    (134) parametros_rename -> . param_path
+    (135) parametros_rename -> . param_path2
+    (162) param_name_2 -> . GUION NAME IGUAL NAME_2
+    (140) param_name -> . GUION NAME IGUAL ID
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (160) param_path2 -> . GUION PATH IGUAL CADENA_DIR_PATH
+    (161) param_path2 -> . GUION PATH IGUAL DIR_PATH
+
+    GUION           shift and go to state 152
+
+    lista_rename                   shift and go to state 146
+    parametros_rename              shift and go to state 147
+    param_name_2                   shift and go to state 148
+    param_name                     shift and go to state 149
+    param_path                     shift and go to state 150
+    param_path2                    shift and go to state 151
+
+state 47
+
+    (25) comando_mkdisk -> MKDISK lista_mkdisk .
+    (26) lista_mkdisk -> lista_mkdisk . parametros_mkdisk
+    (28) parametros_mkdisk -> . param_size
+    (29) parametros_mkdisk -> . param_unit
+    (30) parametros_mkdisk -> . param_path
+    (31) parametros_mkdisk -> . param_fit
+    (136) param_size -> . GUION SIZE IGUAL ENTERO
+    (139) param_unit -> . GUION UNIT IGUAL ID
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (141) param_fit -> . GUION FIT IGUAL ID
+
+    $end            reduce using rule 25 (comando_mkdisk -> MKDISK lista_mkdisk .)
+    GUION           shift and go to state 53
+
+    parametros_mkdisk              shift and go to state 153
+    param_size                     shift and go to state 49
+    param_unit                     shift and go to state 50
+    param_path                     shift and go to state 51
+    param_fit                      shift and go to state 52
+
+state 48
+
+    (27) lista_mkdisk -> parametros_mkdisk .
+
+    GUION           reduce using rule 27 (lista_mkdisk -> parametros_mkdisk .)
+    $end            reduce using rule 27 (lista_mkdisk -> parametros_mkdisk .)
+
+
+state 49
+
+    (28) parametros_mkdisk -> param_size .
+
+    GUION           reduce using rule 28 (parametros_mkdisk -> param_size .)
+    $end            reduce using rule 28 (parametros_mkdisk -> param_size .)
+
+
+state 50
+
+    (29) parametros_mkdisk -> param_unit .
+
+    GUION           reduce using rule 29 (parametros_mkdisk -> param_unit .)
+    $end            reduce using rule 29 (parametros_mkdisk -> param_unit .)
+
+
+state 51
+
+    (30) parametros_mkdisk -> param_path .
+
+    GUION           reduce using rule 30 (parametros_mkdisk -> param_path .)
+    $end            reduce using rule 30 (parametros_mkdisk -> param_path .)
+
+
+state 52
+
+    (31) parametros_mkdisk -> param_fit .
+
+    GUION           reduce using rule 31 (parametros_mkdisk -> param_fit .)
+    $end            reduce using rule 31 (parametros_mkdisk -> param_fit .)
+
+
+state 53
+
+    (136) param_size -> GUION . SIZE IGUAL ENTERO
+    (139) param_unit -> GUION . UNIT IGUAL ID
+    (137) param_path -> GUION . PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> GUION . PATH IGUAL FILE_PATH
+    (141) param_fit -> GUION . FIT IGUAL ID
+
+    SIZE            shift and go to state 154
+    UNIT            shift and go to state 155
+    PATH            shift and go to state 156
+    FIT             shift and go to state 157
+
+
+state 54
+
+    (36) comando_execute -> EXECUTE lista_execute .
+    (37) lista_execute -> lista_execute . parametros_execute
+    (39) parametros_execute -> . param_path
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+
+    $end            reduce using rule 36 (comando_execute -> EXECUTE lista_execute .)
+    GUION           shift and go to state 57
+
+    parametros_execute             shift and go to state 158
+    param_path                     shift and go to state 56
+
+state 55
+
+    (38) lista_execute -> parametros_execute .
+
+    GUION           reduce using rule 38 (lista_execute -> parametros_execute .)
+    $end            reduce using rule 38 (lista_execute -> parametros_execute .)
+
+
+state 56
+
+    (39) parametros_execute -> param_path .
+
+    GUION           reduce using rule 39 (parametros_execute -> param_path .)
+    $end            reduce using rule 39 (parametros_execute -> param_path .)
+
+
+state 57
+
+    (137) param_path -> GUION . PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> GUION . PATH IGUAL FILE_PATH
+
+    PATH            shift and go to state 156
+
+
+state 58
+
+    (45) comando_rep -> REP lista_rep .
+    (46) lista_rep -> lista_rep . parametros_rep
+    (48) parametros_rep -> . param_path
+    (49) parametros_rep -> . param_name
+    (50) parametros_rep -> . param_id
+    (51) parametros_rep -> . param_ruta
+    (52) parametros_rep -> . param_ruta2
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (140) param_name -> . GUION NAME IGUAL ID
+    (146) param_id -> . GUION ID_WORD IGUAL ID_PAR
+    (163) param_ruta -> . GUION RUTA IGUAL CADENA_FILE_PATH
+    (164) param_ruta -> . GUION RUTA IGUAL FILE_PATH
+    (165) param_ruta2 -> . GUION RUTA IGUAL CADENA_DIR_PATH
+    (166) param_ruta2 -> . GUION RUTA IGUAL DIR_PATH
+
+    $end            reduce using rule 45 (comando_rep -> REP lista_rep .)
+    GUION           shift and go to state 65
+
+    parametros_rep                 shift and go to state 159
+    param_path                     shift and go to state 60
+    param_name                     shift and go to state 61
+    param_id                       shift and go to state 62
+    param_ruta                     shift and go to state 63
+    param_ruta2                    shift and go to state 64
+
+state 59
+
+    (47) lista_rep -> parametros_rep .
+
+    GUION           reduce using rule 47 (lista_rep -> parametros_rep .)
+    $end            reduce using rule 47 (lista_rep -> parametros_rep .)
+
+
+state 60
+
+    (48) parametros_rep -> param_path .
+
+    GUION           reduce using rule 48 (parametros_rep -> param_path .)
+    $end            reduce using rule 48 (parametros_rep -> param_path .)
+
+
+state 61
+
+    (49) parametros_rep -> param_name .
+
+    GUION           reduce using rule 49 (parametros_rep -> param_name .)
+    $end            reduce using rule 49 (parametros_rep -> param_name .)
+
+
+state 62
+
+    (50) parametros_rep -> param_id .
+
+    GUION           reduce using rule 50 (parametros_rep -> param_id .)
+    $end            reduce using rule 50 (parametros_rep -> param_id .)
+
+
+state 63
+
+    (51) parametros_rep -> param_ruta .
+
+    GUION           reduce using rule 51 (parametros_rep -> param_ruta .)
+    $end            reduce using rule 51 (parametros_rep -> param_ruta .)
+
+
+state 64
+
+    (52) parametros_rep -> param_ruta2 .
+
+    GUION           reduce using rule 52 (parametros_rep -> param_ruta2 .)
+    $end            reduce using rule 52 (parametros_rep -> param_ruta2 .)
+
+
+state 65
+
+    (137) param_path -> GUION . PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> GUION . PATH IGUAL FILE_PATH
+    (140) param_name -> GUION . NAME IGUAL ID
+    (146) param_id -> GUION . ID_WORD IGUAL ID_PAR
+    (163) param_ruta -> GUION . RUTA IGUAL CADENA_FILE_PATH
+    (164) param_ruta -> GUION . RUTA IGUAL FILE_PATH
+    (165) param_ruta2 -> GUION . RUTA IGUAL CADENA_DIR_PATH
+    (166) param_ruta2 -> GUION . RUTA IGUAL DIR_PATH
+
+    PATH            shift and go to state 156
+    NAME            shift and go to state 160
+    ID_WORD         shift and go to state 161
+    RUTA            shift and go to state 162
+
+
+state 66
+
+    (53) comando_fdisk -> FDISK lista_fdisk .
+    (54) lista_fdisk -> lista_fdisk . parametros_fdisk
+    (56) parametros_fdisk -> . param_size
+    (57) parametros_fdisk -> . param_path
+    (58) parametros_fdisk -> . param_name
+    (59) parametros_fdisk -> . param_unit
+    (60) parametros_fdisk -> . param_type
+    (61) parametros_fdisk -> . param_fit
+    (62) parametros_fdisk -> . param_delete
+    (63) parametros_fdisk -> . param_add
+    (136) param_size -> . GUION SIZE IGUAL ENTERO
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (140) param_name -> . GUION NAME IGUAL ID
+    (139) param_unit -> . GUION UNIT IGUAL ID
+    (142) param_type -> . GUION TYPE IGUAL ID
+    (141) param_fit -> . GUION FIT IGUAL ID
+    (143) param_delete -> . GUION DELETE IGUAL ID
+    (144) param_add -> . GUION ADD IGUAL ENTERO
+    (145) param_add -> . GUION ADD IGUAL entero_negativo
+
+    $end            reduce using rule 53 (comando_fdisk -> FDISK lista_fdisk .)
+    GUION           shift and go to state 76
+
+    parametros_fdisk               shift and go to state 163
+    param_size                     shift and go to state 68
+    param_path                     shift and go to state 69
+    param_name                     shift and go to state 70
+    param_unit                     shift and go to state 71
+    param_type                     shift and go to state 72
+    param_fit                      shift and go to state 73
+    param_delete                   shift and go to state 74
+    param_add                      shift and go to state 75
+
+state 67
+
+    (55) lista_fdisk -> parametros_fdisk .
+
+    GUION           reduce using rule 55 (lista_fdisk -> parametros_fdisk .)
+    $end            reduce using rule 55 (lista_fdisk -> parametros_fdisk .)
+
+
+state 68
+
+    (56) parametros_fdisk -> param_size .
+
+    GUION           reduce using rule 56 (parametros_fdisk -> param_size .)
+    $end            reduce using rule 56 (parametros_fdisk -> param_size .)
+
+
+state 69
+
+    (57) parametros_fdisk -> param_path .
+
+    GUION           reduce using rule 57 (parametros_fdisk -> param_path .)
+    $end            reduce using rule 57 (parametros_fdisk -> param_path .)
+
+
+state 70
+
+    (58) parametros_fdisk -> param_name .
+
+    GUION           reduce using rule 58 (parametros_fdisk -> param_name .)
+    $end            reduce using rule 58 (parametros_fdisk -> param_name .)
+
+
+state 71
+
+    (59) parametros_fdisk -> param_unit .
+
+    GUION           reduce using rule 59 (parametros_fdisk -> param_unit .)
+    $end            reduce using rule 59 (parametros_fdisk -> param_unit .)
+
+
+state 72
+
+    (60) parametros_fdisk -> param_type .
+
+    GUION           reduce using rule 60 (parametros_fdisk -> param_type .)
+    $end            reduce using rule 60 (parametros_fdisk -> param_type .)
+
+
+state 73
+
+    (61) parametros_fdisk -> param_fit .
+
+    GUION           reduce using rule 61 (parametros_fdisk -> param_fit .)
+    $end            reduce using rule 61 (parametros_fdisk -> param_fit .)
+
+
+state 74
+
+    (62) parametros_fdisk -> param_delete .
+
+    GUION           reduce using rule 62 (parametros_fdisk -> param_delete .)
+    $end            reduce using rule 62 (parametros_fdisk -> param_delete .)
+
+
+state 75
+
+    (63) parametros_fdisk -> param_add .
+
+    GUION           reduce using rule 63 (parametros_fdisk -> param_add .)
+    $end            reduce using rule 63 (parametros_fdisk -> param_add .)
+
+
+state 76
+
+    (136) param_size -> GUION . SIZE IGUAL ENTERO
+    (137) param_path -> GUION . PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> GUION . PATH IGUAL FILE_PATH
+    (140) param_name -> GUION . NAME IGUAL ID
+    (139) param_unit -> GUION . UNIT IGUAL ID
+    (142) param_type -> GUION . TYPE IGUAL ID
+    (141) param_fit -> GUION . FIT IGUAL ID
+    (143) param_delete -> GUION . DELETE IGUAL ID
+    (144) param_add -> GUION . ADD IGUAL ENTERO
+    (145) param_add -> GUION . ADD IGUAL entero_negativo
+
+    SIZE            shift and go to state 154
+    PATH            shift and go to state 156
+    NAME            shift and go to state 160
+    UNIT            shift and go to state 155
+    TYPE            shift and go to state 164
+    FIT             shift and go to state 157
+    DELETE          shift and go to state 165
+    ADD             shift and go to state 166
+
+
+state 77
+
+    (32) comando_rmdisk -> RMDISK lista_rmdisk .
+    (33) lista_rmdisk -> lista_rmdisk . parametros_rmdisk
+    (35) parametros_rmdisk -> . param_path
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+
+    $end            reduce using rule 32 (comando_rmdisk -> RMDISK lista_rmdisk .)
+    GUION           shift and go to state 57
+
+    parametros_rmdisk              shift and go to state 167
+    param_path                     shift and go to state 79
+
+state 78
+
+    (34) lista_rmdisk -> parametros_rmdisk .
+
+    GUION           reduce using rule 34 (lista_rmdisk -> parametros_rmdisk .)
+    $end            reduce using rule 34 (lista_rmdisk -> parametros_rmdisk .)
+
+
+state 79
+
+    (35) parametros_rmdisk -> param_path .
+
+    GUION           reduce using rule 35 (parametros_rmdisk -> param_path .)
+    $end            reduce using rule 35 (parametros_rmdisk -> param_path .)
+
+
+state 80
+
+    (40) comando_mount -> MOUNT lista_mount .
+    (41) lista_mount -> lista_mount . parametros_mount
+    (43) parametros_mount -> . param_path
+    (44) parametros_mount -> . param_name
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (140) param_name -> . GUION NAME IGUAL ID
+
+    $end            reduce using rule 40 (comando_mount -> MOUNT lista_mount .)
+    GUION           shift and go to state 84
+
+    parametros_mount               shift and go to state 168
+    param_path                     shift and go to state 82
+    param_name                     shift and go to state 83
+
+state 81
+
+    (42) lista_mount -> parametros_mount .
+
+    GUION           reduce using rule 42 (lista_mount -> parametros_mount .)
+    $end            reduce using rule 42 (lista_mount -> parametros_mount .)
+
+
+state 82
+
+    (43) parametros_mount -> param_path .
+
+    GUION           reduce using rule 43 (parametros_mount -> param_path .)
+    $end            reduce using rule 43 (parametros_mount -> param_path .)
+
+
+state 83
+
+    (44) parametros_mount -> param_name .
+
+    GUION           reduce using rule 44 (parametros_mount -> param_name .)
+    $end            reduce using rule 44 (parametros_mount -> param_name .)
+
+
+state 84
+
+    (137) param_path -> GUION . PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> GUION . PATH IGUAL FILE_PATH
+    (140) param_name -> GUION . NAME IGUAL ID
+
+    PATH            shift and go to state 156
+    NAME            shift and go to state 160
+
+
+state 85
+
+    (65) comando_unmount -> UNMOUNT lista_unmount .
+    (66) lista_unmount -> lista_unmount . parametros_unmount
+    (68) parametros_unmount -> . param_id
+    (146) param_id -> . GUION ID_WORD IGUAL ID_PAR
+
+    $end            reduce using rule 65 (comando_unmount -> UNMOUNT lista_unmount .)
+    GUION           shift and go to state 88
+
+    parametros_unmount             shift and go to state 169
+    param_id                       shift and go to state 87
+
+state 86
+
+    (67) lista_unmount -> parametros_unmount .
+
+    GUION           reduce using rule 67 (lista_unmount -> parametros_unmount .)
+    $end            reduce using rule 67 (lista_unmount -> parametros_unmount .)
+
+
+state 87
+
+    (68) parametros_unmount -> param_id .
+
+    GUION           reduce using rule 68 (parametros_unmount -> param_id .)
+    $end            reduce using rule 68 (parametros_unmount -> param_id .)
+
+
+state 88
+
+    (146) param_id -> GUION . ID_WORD IGUAL ID_PAR
+
+    ID_WORD         shift and go to state 161
+
+
+state 89
+
+    (69) comando_mkfs -> MKFS lista_mkfs .
+    (70) lista_mkfs -> lista_mkfs . parametros_mkfs
+    (72) parametros_mkfs -> . param_id
+    (73) parametros_mkfs -> . param_type
+    (74) parametros_mkfs -> . param_fs
+    (146) param_id -> . GUION ID_WORD IGUAL ID_PAR
+    (142) param_type -> . GUION TYPE IGUAL ID
+    (147) param_fs -> . GUION FS IGUAL 2FS
+    (148) param_fs -> . GUION FS IGUAL 3FS
+
+    $end            reduce using rule 69 (comando_mkfs -> MKFS lista_mkfs .)
+    GUION           shift and go to state 94
+
+    parametros_mkfs                shift and go to state 170
+    param_id                       shift and go to state 91
+    param_type                     shift and go to state 92
+    param_fs                       shift and go to state 93
+
+state 90
+
+    (71) lista_mkfs -> parametros_mkfs .
+
+    GUION           reduce using rule 71 (lista_mkfs -> parametros_mkfs .)
+    $end            reduce using rule 71 (lista_mkfs -> parametros_mkfs .)
+
+
+state 91
+
+    (72) parametros_mkfs -> param_id .
+
+    GUION           reduce using rule 72 (parametros_mkfs -> param_id .)
+    $end            reduce using rule 72 (parametros_mkfs -> param_id .)
+
+
+state 92
+
+    (73) parametros_mkfs -> param_type .
+
+    GUION           reduce using rule 73 (parametros_mkfs -> param_type .)
+    $end            reduce using rule 73 (parametros_mkfs -> param_type .)
+
+
+state 93
+
+    (74) parametros_mkfs -> param_fs .
+
+    GUION           reduce using rule 74 (parametros_mkfs -> param_fs .)
+    $end            reduce using rule 74 (parametros_mkfs -> param_fs .)
+
+
+state 94
+
+    (146) param_id -> GUION . ID_WORD IGUAL ID_PAR
+    (142) param_type -> GUION . TYPE IGUAL ID
+    (147) param_fs -> GUION . FS IGUAL 2FS
+    (148) param_fs -> GUION . FS IGUAL 3FS
+
+    ID_WORD         shift and go to state 161
+    TYPE            shift and go to state 164
+    FS              shift and go to state 171
+
+
+state 95
+
+    (76) comando_login -> LOGIN lista_login .
+    (77) lista_login -> lista_login . parametros_login
+    (79) parametros_login -> . param_id
+    (80) parametros_login -> . param_user
+    (81) parametros_login -> . param_pass
+    (146) param_id -> . GUION ID_WORD IGUAL ID_PAR
+    (149) param_user -> . GUION USER IGUAL ID
+    (150) param_user -> . GUION USER IGUAL CADENA_SIMPLE
+    (151) param_pass -> . GUION PASS IGUAL ID
+    (152) param_pass -> . GUION PASS IGUAL ENTERO
+
+    $end            reduce using rule 76 (comando_login -> LOGIN lista_login .)
+    GUION           shift and go to state 100
+
+    parametros_login               shift and go to state 172
+    param_id                       shift and go to state 97
+    param_user                     shift and go to state 98
+    param_pass                     shift and go to state 99
+
+state 96
+
+    (78) lista_login -> parametros_login .
+
+    GUION           reduce using rule 78 (lista_login -> parametros_login .)
+    $end            reduce using rule 78 (lista_login -> parametros_login .)
+
+
+state 97
+
+    (79) parametros_login -> param_id .
+
+    GUION           reduce using rule 79 (parametros_login -> param_id .)
+    $end            reduce using rule 79 (parametros_login -> param_id .)
+
+
+state 98
+
+    (80) parametros_login -> param_user .
+
+    GUION           reduce using rule 80 (parametros_login -> param_user .)
+    $end            reduce using rule 80 (parametros_login -> param_user .)
+
+
+state 99
+
+    (81) parametros_login -> param_pass .
+
+    GUION           reduce using rule 81 (parametros_login -> param_pass .)
+    $end            reduce using rule 81 (parametros_login -> param_pass .)
+
+
+state 100
+
+    (146) param_id -> GUION . ID_WORD IGUAL ID_PAR
+    (149) param_user -> GUION . USER IGUAL ID
+    (150) param_user -> GUION . USER IGUAL CADENA_SIMPLE
+    (151) param_pass -> GUION . PASS IGUAL ID
+    (152) param_pass -> GUION . PASS IGUAL ENTERO
+
+    ID_WORD         shift and go to state 161
+    USER            shift and go to state 173
+    PASS            shift and go to state 174
+
+
+state 101
+
+    (83) comando_mkgrp -> MKGRP lista_mkgrp .
+    (84) lista_mkgrp -> lista_mkgrp . parametros_mkgrp
+    (86) parametros_mkgrp -> . param_name
+    (87) parametros_mkgrp -> . param_name__cadena
+    (140) param_name -> . GUION NAME IGUAL ID
+    (167) param_name__cadena -> . GUION NAME IGUAL CADENA_SIMPLE
+
+    $end            reduce using rule 83 (comando_mkgrp -> MKGRP lista_mkgrp .)
+    GUION           shift and go to state 105
+
+    parametros_mkgrp               shift and go to state 175
+    param_name                     shift and go to state 103
+    param_name__cadena             shift and go to state 104
+
+state 102
+
+    (85) lista_mkgrp -> parametros_mkgrp .
+
+    GUION           reduce using rule 85 (lista_mkgrp -> parametros_mkgrp .)
+    $end            reduce using rule 85 (lista_mkgrp -> parametros_mkgrp .)
+
+
+state 103
+
+    (86) parametros_mkgrp -> param_name .
+
+    GUION           reduce using rule 86 (parametros_mkgrp -> param_name .)
+    $end            reduce using rule 86 (parametros_mkgrp -> param_name .)
+
+
+state 104
+
+    (87) parametros_mkgrp -> param_name__cadena .
+
+    GUION           reduce using rule 87 (parametros_mkgrp -> param_name__cadena .)
+    $end            reduce using rule 87 (parametros_mkgrp -> param_name__cadena .)
+
+
+state 105
+
+    (140) param_name -> GUION . NAME IGUAL ID
+    (167) param_name__cadena -> GUION . NAME IGUAL CADENA_SIMPLE
+
+    NAME            shift and go to state 176
+
+
+state 106
+
+    (88) comando_rmgrp -> RMGRP lista_rmgrp .
+    (89) lista_rmgrp -> lista_rmgrp . parametros_rmgrp
+    (91) parametros_rmgrp -> . param_name
+    (92) parametros_rmgrp -> . param_name__cadena
+    (140) param_name -> . GUION NAME IGUAL ID
+    (167) param_name__cadena -> . GUION NAME IGUAL CADENA_SIMPLE
+
+    $end            reduce using rule 88 (comando_rmgrp -> RMGRP lista_rmgrp .)
+    GUION           shift and go to state 105
+
+    parametros_rmgrp               shift and go to state 177
+    param_name                     shift and go to state 108
+    param_name__cadena             shift and go to state 109
+
+state 107
+
+    (90) lista_rmgrp -> parametros_rmgrp .
+
+    GUION           reduce using rule 90 (lista_rmgrp -> parametros_rmgrp .)
+    $end            reduce using rule 90 (lista_rmgrp -> parametros_rmgrp .)
+
+
+state 108
+
+    (91) parametros_rmgrp -> param_name .
+
+    GUION           reduce using rule 91 (parametros_rmgrp -> param_name .)
+    $end            reduce using rule 91 (parametros_rmgrp -> param_name .)
+
+
+state 109
+
+    (92) parametros_rmgrp -> param_name__cadena .
+
+    GUION           reduce using rule 92 (parametros_rmgrp -> param_name__cadena .)
+    $end            reduce using rule 92 (parametros_rmgrp -> param_name__cadena .)
+
+
+state 110
+
+    (99) comando_rmusr -> RMUSR lista_rmusr .
+    (100) lista_rmusr -> lista_rmusr . parametros_rmusr
+    (102) parametros_rmusr -> . param_user
+    (149) param_user -> . GUION USER IGUAL ID
+    (150) param_user -> . GUION USER IGUAL CADENA_SIMPLE
+
+    $end            reduce using rule 99 (comando_rmusr -> RMUSR lista_rmusr .)
+    GUION           shift and go to state 113
+
+    parametros_rmusr               shift and go to state 178
+    param_user                     shift and go to state 112
+
+state 111
+
+    (101) lista_rmusr -> parametros_rmusr .
+
+    GUION           reduce using rule 101 (lista_rmusr -> parametros_rmusr .)
+    $end            reduce using rule 101 (lista_rmusr -> parametros_rmusr .)
+
+
+state 112
+
+    (102) parametros_rmusr -> param_user .
+
+    GUION           reduce using rule 102 (parametros_rmusr -> param_user .)
+    $end            reduce using rule 102 (parametros_rmusr -> param_user .)
+
+
+state 113
+
+    (149) param_user -> GUION . USER IGUAL ID
+    (150) param_user -> GUION . USER IGUAL CADENA_SIMPLE
+
+    USER            shift and go to state 173
+
+
+state 114
+
+    (93) comando_mkusr -> MKUSR lista_mkusr .
+    (94) lista_mkusr -> lista_mkusr . parametros_mkusr
+    (96) parametros_mkusr -> . param_user
+    (97) parametros_mkusr -> . param_grp
+    (98) parametros_mkusr -> . param_pass
+    (149) param_user -> . GUION USER IGUAL ID
+    (150) param_user -> . GUION USER IGUAL CADENA_SIMPLE
+    (153) param_grp -> . GUION GRP IGUAL ID
+    (154) param_grp -> . GUION GRP IGUAL CADENA_SIMPLE
+    (151) param_pass -> . GUION PASS IGUAL ID
+    (152) param_pass -> . GUION PASS IGUAL ENTERO
+
+    $end            reduce using rule 93 (comando_mkusr -> MKUSR lista_mkusr .)
+    GUION           shift and go to state 119
+
+    parametros_mkusr               shift and go to state 179
+    param_user                     shift and go to state 116
+    param_grp                      shift and go to state 117
+    param_pass                     shift and go to state 118
+
+state 115
+
+    (95) lista_mkusr -> parametros_mkusr .
+
+    GUION           reduce using rule 95 (lista_mkusr -> parametros_mkusr .)
+    $end            reduce using rule 95 (lista_mkusr -> parametros_mkusr .)
+
+
+state 116
+
+    (96) parametros_mkusr -> param_user .
+
+    GUION           reduce using rule 96 (parametros_mkusr -> param_user .)
+    $end            reduce using rule 96 (parametros_mkusr -> param_user .)
+
+
+state 117
+
+    (97) parametros_mkusr -> param_grp .
+
+    GUION           reduce using rule 97 (parametros_mkusr -> param_grp .)
+    $end            reduce using rule 97 (parametros_mkusr -> param_grp .)
+
+
+state 118
+
+    (98) parametros_mkusr -> param_pass .
+
+    GUION           reduce using rule 98 (parametros_mkusr -> param_pass .)
+    $end            reduce using rule 98 (parametros_mkusr -> param_pass .)
+
+
+state 119
+
+    (149) param_user -> GUION . USER IGUAL ID
+    (150) param_user -> GUION . USER IGUAL CADENA_SIMPLE
+    (153) param_grp -> GUION . GRP IGUAL ID
+    (154) param_grp -> GUION . GRP IGUAL CADENA_SIMPLE
+    (151) param_pass -> GUION . PASS IGUAL ID
+    (152) param_pass -> GUION . PASS IGUAL ENTERO
+
+    USER            shift and go to state 173
+    GRP             shift and go to state 180
+    PASS            shift and go to state 174
+
+
+state 120
+
+    (103) comando_mkfile -> MKFILE lista_mkfile .
+    (104) lista_mkfile -> lista_mkfile . parametros_mkfile
+    (106) parametros_mkfile -> . param_path
+    (107) parametros_mkfile -> . param_size
+    (108) parametros_mkfile -> . param_cont
+    (109) parametros_mkfile -> . param_r
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (136) param_size -> . GUION SIZE IGUAL ENTERO
+    (156) param_cont -> . GUION CONT IGUAL CADENA_FILE_PATH
+    (157) param_cont -> . GUION CONT IGUAL FILE_PATH
+    (155) param_r -> . GUION R
+
+    $end            reduce using rule 103 (comando_mkfile -> MKFILE lista_mkfile .)
+    GUION           shift and go to state 126
+
+    parametros_mkfile              shift and go to state 181
+    param_path                     shift and go to state 122
+    param_size                     shift and go to state 123
+    param_cont                     shift and go to state 124
+    param_r                        shift and go to state 125
+
+state 121
+
+    (105) lista_mkfile -> parametros_mkfile .
+
+    GUION           reduce using rule 105 (lista_mkfile -> parametros_mkfile .)
+    $end            reduce using rule 105 (lista_mkfile -> parametros_mkfile .)
+
+
+state 122
+
+    (106) parametros_mkfile -> param_path .
+
+    GUION           reduce using rule 106 (parametros_mkfile -> param_path .)
+    $end            reduce using rule 106 (parametros_mkfile -> param_path .)
+
+
+state 123
+
+    (107) parametros_mkfile -> param_size .
+
+    GUION           reduce using rule 107 (parametros_mkfile -> param_size .)
+    $end            reduce using rule 107 (parametros_mkfile -> param_size .)
+
+
+state 124
+
+    (108) parametros_mkfile -> param_cont .
+
+    GUION           reduce using rule 108 (parametros_mkfile -> param_cont .)
+    $end            reduce using rule 108 (parametros_mkfile -> param_cont .)
+
+
+state 125
+
+    (109) parametros_mkfile -> param_r .
+
+    GUION           reduce using rule 109 (parametros_mkfile -> param_r .)
+    $end            reduce using rule 109 (parametros_mkfile -> param_r .)
+
+
+state 126
+
+    (137) param_path -> GUION . PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> GUION . PATH IGUAL FILE_PATH
+    (136) param_size -> GUION . SIZE IGUAL ENTERO
+    (156) param_cont -> GUION . CONT IGUAL CADENA_FILE_PATH
+    (157) param_cont -> GUION . CONT IGUAL FILE_PATH
+    (155) param_r -> GUION . R
+
+    PATH            shift and go to state 156
+    SIZE            shift and go to state 154
+    CONT            shift and go to state 182
+    R               shift and go to state 183
+
+
+state 127
+
+    (110) comando_cat -> CAT lista_cat .
+    (111) lista_cat -> lista_cat . parametros_cat
+    (113) parametros_cat -> . param_filen
+    (158) param_filen -> . GUION ID IGUAL CADENA_FILE_PATH
+    (159) param_filen -> . GUION ID IGUAL FILE_PATH
+
+    $end            reduce using rule 110 (comando_cat -> CAT lista_cat .)
+    GUION           shift and go to state 130
+
+    parametros_cat                 shift and go to state 184
+    param_filen                    shift and go to state 129
+
+state 128
+
+    (112) lista_cat -> parametros_cat .
+
+    GUION           reduce using rule 112 (lista_cat -> parametros_cat .)
+    $end            reduce using rule 112 (lista_cat -> parametros_cat .)
+
+
+state 129
+
+    (113) parametros_cat -> param_filen .
+
+    GUION           reduce using rule 113 (parametros_cat -> param_filen .)
+    $end            reduce using rule 113 (parametros_cat -> param_filen .)
+
+
+state 130
+
+    (158) param_filen -> GUION . ID IGUAL CADENA_FILE_PATH
+    (159) param_filen -> GUION . ID IGUAL FILE_PATH
+
+    ID              shift and go to state 185
+
+
+state 131
+
+    (114) comando_mkdir -> MKDIR lista_mkdir .
+    (115) lista_mkdir -> lista_mkdir . parametros_mkdir
+    (117) parametros_mkdir -> . param_path2
+    (118) parametros_mkdir -> . param_r
+    (160) param_path2 -> . GUION PATH IGUAL CADENA_DIR_PATH
+    (161) param_path2 -> . GUION PATH IGUAL DIR_PATH
+    (155) param_r -> . GUION R
+
+    $end            reduce using rule 114 (comando_mkdir -> MKDIR lista_mkdir .)
+    GUION           shift and go to state 135
+
+    parametros_mkdir               shift and go to state 186
+    param_path2                    shift and go to state 133
+    param_r                        shift and go to state 134
+
+state 132
+
+    (116) lista_mkdir -> parametros_mkdir .
+
+    GUION           reduce using rule 116 (lista_mkdir -> parametros_mkdir .)
+    $end            reduce using rule 116 (lista_mkdir -> parametros_mkdir .)
+
+
+state 133
+
+    (117) parametros_mkdir -> param_path2 .
+
+    GUION           reduce using rule 117 (parametros_mkdir -> param_path2 .)
+    $end            reduce using rule 117 (parametros_mkdir -> param_path2 .)
+
+
+state 134
+
+    (118) parametros_mkdir -> param_r .
+
+    GUION           reduce using rule 118 (parametros_mkdir -> param_r .)
+    $end            reduce using rule 118 (parametros_mkdir -> param_r .)
+
+
+state 135
+
+    (160) param_path2 -> GUION . PATH IGUAL CADENA_DIR_PATH
+    (161) param_path2 -> GUION . PATH IGUAL DIR_PATH
+    (155) param_r -> GUION . R
+
+    PATH            shift and go to state 187
+    R               shift and go to state 183
+
+
+state 136
+
+    (119) comando_remove -> REMOVE lista_remove .
+    (120) lista_remove -> lista_remove . parametros_remove
+    (122) parametros_remove -> . param_path
+    (123) parametros_remove -> . param_path2
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (160) param_path2 -> . GUION PATH IGUAL CADENA_DIR_PATH
+    (161) param_path2 -> . GUION PATH IGUAL DIR_PATH
+
+    $end            reduce using rule 119 (comando_remove -> REMOVE lista_remove .)
+    GUION           shift and go to state 140
+
+    parametros_remove              shift and go to state 188
+    param_path                     shift and go to state 138
+    param_path2                    shift and go to state 139
+
+state 137
+
+    (121) lista_remove -> parametros_remove .
+
+    GUION           reduce using rule 121 (lista_remove -> parametros_remove .)
+    $end            reduce using rule 121 (lista_remove -> parametros_remove .)
+
+
+state 138
+
+    (122) parametros_remove -> param_path .
+
+    GUION           reduce using rule 122 (parametros_remove -> param_path .)
+    $end            reduce using rule 122 (parametros_remove -> param_path .)
+
+
+state 139
+
+    (123) parametros_remove -> param_path2 .
+
+    GUION           reduce using rule 123 (parametros_remove -> param_path2 .)
+    $end            reduce using rule 123 (parametros_remove -> param_path2 .)
+
+
+state 140
+
+    (137) param_path -> GUION . PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> GUION . PATH IGUAL FILE_PATH
+    (160) param_path2 -> GUION . PATH IGUAL CADENA_DIR_PATH
+    (161) param_path2 -> GUION . PATH IGUAL DIR_PATH
+
+    PATH            shift and go to state 189
+
+
+state 141
+
+    (124) comando_edit -> EDIT lista_edit .
+    (125) lista_edit -> lista_edit . parametros_edit
+    (127) parametros_edit -> . param_path
+    (128) parametros_edit -> . param_cont
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (156) param_cont -> . GUION CONT IGUAL CADENA_FILE_PATH
+    (157) param_cont -> . GUION CONT IGUAL FILE_PATH
+
+    $end            reduce using rule 124 (comando_edit -> EDIT lista_edit .)
+    GUION           shift and go to state 145
+
+    parametros_edit                shift and go to state 190
+    param_path                     shift and go to state 143
+    param_cont                     shift and go to state 144
+
+state 142
+
+    (126) lista_edit -> parametros_edit .
+
+    GUION           reduce using rule 126 (lista_edit -> parametros_edit .)
+    $end            reduce using rule 126 (lista_edit -> parametros_edit .)
+
+
+state 143
+
+    (127) parametros_edit -> param_path .
+
+    GUION           reduce using rule 127 (parametros_edit -> param_path .)
+    $end            reduce using rule 127 (parametros_edit -> param_path .)
+
+
+state 144
+
+    (128) parametros_edit -> param_cont .
+
+    GUION           reduce using rule 128 (parametros_edit -> param_cont .)
+    $end            reduce using rule 128 (parametros_edit -> param_cont .)
+
+
+state 145
+
+    (137) param_path -> GUION . PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> GUION . PATH IGUAL FILE_PATH
+    (156) param_cont -> GUION . CONT IGUAL CADENA_FILE_PATH
+    (157) param_cont -> GUION . CONT IGUAL FILE_PATH
+
+    PATH            shift and go to state 156
+    CONT            shift and go to state 182
+
+
+state 146
+
+    (129) comando_rename -> RENAME lista_rename .
+    (130) lista_rename -> lista_rename . parametros_rename
+    (132) parametros_rename -> . param_name_2
+    (133) parametros_rename -> . param_name
+    (134) parametros_rename -> . param_path
+    (135) parametros_rename -> . param_path2
+    (162) param_name_2 -> . GUION NAME IGUAL NAME_2
+    (140) param_name -> . GUION NAME IGUAL ID
+    (137) param_path -> . GUION PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> . GUION PATH IGUAL FILE_PATH
+    (160) param_path2 -> . GUION PATH IGUAL CADENA_DIR_PATH
+    (161) param_path2 -> . GUION PATH IGUAL DIR_PATH
+
+    $end            reduce using rule 129 (comando_rename -> RENAME lista_rename .)
+    GUION           shift and go to state 152
+
+    parametros_rename              shift and go to state 191
+    param_name_2                   shift and go to state 148
+    param_name                     shift and go to state 149
+    param_path                     shift and go to state 150
+    param_path2                    shift and go to state 151
+
+state 147
+
+    (131) lista_rename -> parametros_rename .
+
+    GUION           reduce using rule 131 (lista_rename -> parametros_rename .)
+    $end            reduce using rule 131 (lista_rename -> parametros_rename .)
+
+
+state 148
+
+    (132) parametros_rename -> param_name_2 .
+
+    GUION           reduce using rule 132 (parametros_rename -> param_name_2 .)
+    $end            reduce using rule 132 (parametros_rename -> param_name_2 .)
+
+
+state 149
+
+    (133) parametros_rename -> param_name .
+
+    GUION           reduce using rule 133 (parametros_rename -> param_name .)
+    $end            reduce using rule 133 (parametros_rename -> param_name .)
+
+
+state 150
+
+    (134) parametros_rename -> param_path .
+
+    GUION           reduce using rule 134 (parametros_rename -> param_path .)
+    $end            reduce using rule 134 (parametros_rename -> param_path .)
+
+
+state 151
+
+    (135) parametros_rename -> param_path2 .
+
+    GUION           reduce using rule 135 (parametros_rename -> param_path2 .)
+    $end            reduce using rule 135 (parametros_rename -> param_path2 .)
+
+
+state 152
+
+    (162) param_name_2 -> GUION . NAME IGUAL NAME_2
+    (140) param_name -> GUION . NAME IGUAL ID
+    (137) param_path -> GUION . PATH IGUAL CADENA_FILE_PATH
+    (138) param_path -> GUION . PATH IGUAL FILE_PATH
+    (160) param_path2 -> GUION . PATH IGUAL CADENA_DIR_PATH
+    (161) param_path2 -> GUION . PATH IGUAL DIR_PATH
+
+    NAME            shift and go to state 192
+    PATH            shift and go to state 189
+
+
+state 153
+
+    (26) lista_mkdisk -> lista_mkdisk parametros_mkdisk .
+
+    GUION           reduce using rule 26 (lista_mkdisk -> lista_mkdisk parametros_mkdisk .)
+    $end            reduce using rule 26 (lista_mkdisk -> lista_mkdisk parametros_mkdisk .)
+
+
+state 154
+
+    (136) param_size -> GUION SIZE . IGUAL ENTERO
+
+    IGUAL           shift and go to state 193
+
+
+state 155
+
+    (139) param_unit -> GUION UNIT . IGUAL ID
+
+    IGUAL           shift and go to state 194
+
+
+state 156
+
+    (137) param_path -> GUION PATH . IGUAL CADENA_FILE_PATH
+    (138) param_path -> GUION PATH . IGUAL FILE_PATH
+
+    IGUAL           shift and go to state 195
+
+
+state 157
+
+    (141) param_fit -> GUION FIT . IGUAL ID
+
+    IGUAL           shift and go to state 196
+
+
+state 158
+
+    (37) lista_execute -> lista_execute parametros_execute .
+
+    GUION           reduce using rule 37 (lista_execute -> lista_execute parametros_execute .)
+    $end            reduce using rule 37 (lista_execute -> lista_execute parametros_execute .)
+
+
+state 159
+
+    (46) lista_rep -> lista_rep parametros_rep .
+
+    GUION           reduce using rule 46 (lista_rep -> lista_rep parametros_rep .)
+    $end            reduce using rule 46 (lista_rep -> lista_rep parametros_rep .)
+
+
+state 160
+
+    (140) param_name -> GUION NAME . IGUAL ID
+
+    IGUAL           shift and go to state 197
+
+
+state 161
+
+    (146) param_id -> GUION ID_WORD . IGUAL ID_PAR
+
+    IGUAL           shift and go to state 198
+
+
+state 162
+
+    (163) param_ruta -> GUION RUTA . IGUAL CADENA_FILE_PATH
+    (164) param_ruta -> GUION RUTA . IGUAL FILE_PATH
+    (165) param_ruta2 -> GUION RUTA . IGUAL CADENA_DIR_PATH
+    (166) param_ruta2 -> GUION RUTA . IGUAL DIR_PATH
+
+    IGUAL           shift and go to state 199
+
+
+state 163
+
+    (54) lista_fdisk -> lista_fdisk parametros_fdisk .
+
+    GUION           reduce using rule 54 (lista_fdisk -> lista_fdisk parametros_fdisk .)
+    $end            reduce using rule 54 (lista_fdisk -> lista_fdisk parametros_fdisk .)
+
+
+state 164
+
+    (142) param_type -> GUION TYPE . IGUAL ID
+
+    IGUAL           shift and go to state 200
+
+
+state 165
+
+    (143) param_delete -> GUION DELETE . IGUAL ID
+
+    IGUAL           shift and go to state 201
+
+
+state 166
+
+    (144) param_add -> GUION ADD . IGUAL ENTERO
+    (145) param_add -> GUION ADD . IGUAL entero_negativo
+
+    IGUAL           shift and go to state 202
+
+
+state 167
+
+    (33) lista_rmdisk -> lista_rmdisk parametros_rmdisk .
+
+    GUION           reduce using rule 33 (lista_rmdisk -> lista_rmdisk parametros_rmdisk .)
+    $end            reduce using rule 33 (lista_rmdisk -> lista_rmdisk parametros_rmdisk .)
+
+
+state 168
+
+    (41) lista_mount -> lista_mount parametros_mount .
+
+    GUION           reduce using rule 41 (lista_mount -> lista_mount parametros_mount .)
+    $end            reduce using rule 41 (lista_mount -> lista_mount parametros_mount .)
+
+
+state 169
+
+    (66) lista_unmount -> lista_unmount parametros_unmount .
+
+    GUION           reduce using rule 66 (lista_unmount -> lista_unmount parametros_unmount .)
+    $end            reduce using rule 66 (lista_unmount -> lista_unmount parametros_unmount .)
+
+
+state 170
+
+    (70) lista_mkfs -> lista_mkfs parametros_mkfs .
+
+    GUION           reduce using rule 70 (lista_mkfs -> lista_mkfs parametros_mkfs .)
+    $end            reduce using rule 70 (lista_mkfs -> lista_mkfs parametros_mkfs .)
+
+
+state 171
+
+    (147) param_fs -> GUION FS . IGUAL 2FS
+    (148) param_fs -> GUION FS . IGUAL 3FS
+
+    IGUAL           shift and go to state 203
+
+
+state 172
+
+    (77) lista_login -> lista_login parametros_login .
+
+    GUION           reduce using rule 77 (lista_login -> lista_login parametros_login .)
+    $end            reduce using rule 77 (lista_login -> lista_login parametros_login .)
+
+
+state 173
+
+    (149) param_user -> GUION USER . IGUAL ID
+    (150) param_user -> GUION USER . IGUAL CADENA_SIMPLE
+
+    IGUAL           shift and go to state 204
+
+
+state 174
+
+    (151) param_pass -> GUION PASS . IGUAL ID
+    (152) param_pass -> GUION PASS . IGUAL ENTERO
+
+    IGUAL           shift and go to state 205
+
+
+state 175
+
+    (84) lista_mkgrp -> lista_mkgrp parametros_mkgrp .
+
+    GUION           reduce using rule 84 (lista_mkgrp -> lista_mkgrp parametros_mkgrp .)
+    $end            reduce using rule 84 (lista_mkgrp -> lista_mkgrp parametros_mkgrp .)
+
+
+state 176
+
+    (140) param_name -> GUION NAME . IGUAL ID
+    (167) param_name__cadena -> GUION NAME . IGUAL CADENA_SIMPLE
+
+    IGUAL           shift and go to state 206
+
+
+state 177
+
+    (89) lista_rmgrp -> lista_rmgrp parametros_rmgrp .
+
+    GUION           reduce using rule 89 (lista_rmgrp -> lista_rmgrp parametros_rmgrp .)
+    $end            reduce using rule 89 (lista_rmgrp -> lista_rmgrp parametros_rmgrp .)
+
+
+state 178
+
+    (100) lista_rmusr -> lista_rmusr parametros_rmusr .
+
+    GUION           reduce using rule 100 (lista_rmusr -> lista_rmusr parametros_rmusr .)
+    $end            reduce using rule 100 (lista_rmusr -> lista_rmusr parametros_rmusr .)
+
+
+state 179
+
+    (94) lista_mkusr -> lista_mkusr parametros_mkusr .
+
+    GUION           reduce using rule 94 (lista_mkusr -> lista_mkusr parametros_mkusr .)
+    $end            reduce using rule 94 (lista_mkusr -> lista_mkusr parametros_mkusr .)
+
+
+state 180
+
+    (153) param_grp -> GUION GRP . IGUAL ID
+    (154) param_grp -> GUION GRP . IGUAL CADENA_SIMPLE
+
+    IGUAL           shift and go to state 207
+
+
+state 181
+
+    (104) lista_mkfile -> lista_mkfile parametros_mkfile .
+
+    GUION           reduce using rule 104 (lista_mkfile -> lista_mkfile parametros_mkfile .)
+    $end            reduce using rule 104 (lista_mkfile -> lista_mkfile parametros_mkfile .)
+
+
+state 182
+
+    (156) param_cont -> GUION CONT . IGUAL CADENA_FILE_PATH
+    (157) param_cont -> GUION CONT . IGUAL FILE_PATH
+
+    IGUAL           shift and go to state 208
+
+
+state 183
+
+    (155) param_r -> GUION R .
+
+    GUION           reduce using rule 155 (param_r -> GUION R .)
+    $end            reduce using rule 155 (param_r -> GUION R .)
+
+
+state 184
+
+    (111) lista_cat -> lista_cat parametros_cat .
+
+    GUION           reduce using rule 111 (lista_cat -> lista_cat parametros_cat .)
+    $end            reduce using rule 111 (lista_cat -> lista_cat parametros_cat .)
+
+
+state 185
+
+    (158) param_filen -> GUION ID . IGUAL CADENA_FILE_PATH
+    (159) param_filen -> GUION ID . IGUAL FILE_PATH
+
+    IGUAL           shift and go to state 209
+
+
+state 186
+
+    (115) lista_mkdir -> lista_mkdir parametros_mkdir .
+
+    GUION           reduce using rule 115 (lista_mkdir -> lista_mkdir parametros_mkdir .)
+    $end            reduce using rule 115 (lista_mkdir -> lista_mkdir parametros_mkdir .)
+
+
+state 187
+
+    (160) param_path2 -> GUION PATH . IGUAL CADENA_DIR_PATH
+    (161) param_path2 -> GUION PATH . IGUAL DIR_PATH
+
+    IGUAL           shift and go to state 210
+
+
+state 188
+
+    (120) lista_remove -> lista_remove parametros_remove .
+
+    GUION           reduce using rule 120 (lista_remove -> lista_remove parametros_remove .)
+    $end            reduce using rule 120 (lista_remove -> lista_remove parametros_remove .)
+
+
+state 189
+
+    (137) param_path -> GUION PATH . IGUAL CADENA_FILE_PATH
+    (138) param_path -> GUION PATH . IGUAL FILE_PATH
+    (160) param_path2 -> GUION PATH . IGUAL CADENA_DIR_PATH
+    (161) param_path2 -> GUION PATH . IGUAL DIR_PATH
+
+    IGUAL           shift and go to state 211
+
+
+state 190
+
+    (125) lista_edit -> lista_edit parametros_edit .
+
+    GUION           reduce using rule 125 (lista_edit -> lista_edit parametros_edit .)
+    $end            reduce using rule 125 (lista_edit -> lista_edit parametros_edit .)
+
+
+state 191
+
+    (130) lista_rename -> lista_rename parametros_rename .
+
+    GUION           reduce using rule 130 (lista_rename -> lista_rename parametros_rename .)
+    $end            reduce using rule 130 (lista_rename -> lista_rename parametros_rename .)
+
+
+state 192
+
+    (162) param_name_2 -> GUION NAME . IGUAL NAME_2
+    (140) param_name -> GUION NAME . IGUAL ID
+
+    IGUAL           shift and go to state 212
+
+
+state 193
+
+    (136) param_size -> GUION SIZE IGUAL . ENTERO
+
+    ENTERO          shift and go to state 213
+
+
+state 194
+
+    (139) param_unit -> GUION UNIT IGUAL . ID
+
+    ID              shift and go to state 214
+
+
+state 195
+
+    (137) param_path -> GUION PATH IGUAL . CADENA_FILE_PATH
+    (138) param_path -> GUION PATH IGUAL . FILE_PATH
+
+    CADENA_FILE_PATH shift and go to state 215
+    FILE_PATH       shift and go to state 216
+
+
+state 196
+
+    (141) param_fit -> GUION FIT IGUAL . ID
+
+    ID              shift and go to state 217
+
+
+state 197
+
+    (140) param_name -> GUION NAME IGUAL . ID
+
+    ID              shift and go to state 218
+
+
+state 198
+
+    (146) param_id -> GUION ID_WORD IGUAL . ID_PAR
+
+    ID_PAR          shift and go to state 219
+
+
+state 199
+
+    (163) param_ruta -> GUION RUTA IGUAL . CADENA_FILE_PATH
+    (164) param_ruta -> GUION RUTA IGUAL . FILE_PATH
+    (165) param_ruta2 -> GUION RUTA IGUAL . CADENA_DIR_PATH
+    (166) param_ruta2 -> GUION RUTA IGUAL . DIR_PATH
+
+    CADENA_FILE_PATH shift and go to state 220
+    FILE_PATH       shift and go to state 221
+    CADENA_DIR_PATH shift and go to state 222
+    DIR_PATH        shift and go to state 223
+
+
+state 200
+
+    (142) param_type -> GUION TYPE IGUAL . ID
+
+    ID              shift and go to state 224
+
+
+state 201
+
+    (143) param_delete -> GUION DELETE IGUAL . ID
+
+    ID              shift and go to state 225
+
+
+state 202
+
+    (144) param_add -> GUION ADD IGUAL . ENTERO
+    (145) param_add -> GUION ADD IGUAL . entero_negativo
+    (168) entero_negativo -> . GUION ENTERO
+
+    ENTERO          shift and go to state 227
+    GUION           shift and go to state 226
+
+    entero_negativo                shift and go to state 228
+
+state 203
+
+    (147) param_fs -> GUION FS IGUAL . 2FS
+    (148) param_fs -> GUION FS IGUAL . 3FS
+
+    2FS             shift and go to state 229
+    3FS             shift and go to state 230
+
+
+state 204
+
+    (149) param_user -> GUION USER IGUAL . ID
+    (150) param_user -> GUION USER IGUAL . CADENA_SIMPLE
+
+    ID              shift and go to state 231
+    CADENA_SIMPLE   shift and go to state 232
+
+
+state 205
+
+    (151) param_pass -> GUION PASS IGUAL . ID
+    (152) param_pass -> GUION PASS IGUAL . ENTERO
+
+    ID              shift and go to state 233
+    ENTERO          shift and go to state 234
+
+
+state 206
+
+    (140) param_name -> GUION NAME IGUAL . ID
+    (167) param_name__cadena -> GUION NAME IGUAL . CADENA_SIMPLE
+
+    ID              shift and go to state 218
+    CADENA_SIMPLE   shift and go to state 235
+
+
+state 207
+
+    (153) param_grp -> GUION GRP IGUAL . ID
+    (154) param_grp -> GUION GRP IGUAL . CADENA_SIMPLE
+
+    ID              shift and go to state 236
+    CADENA_SIMPLE   shift and go to state 237
+
+
+state 208
+
+    (156) param_cont -> GUION CONT IGUAL . CADENA_FILE_PATH
+    (157) param_cont -> GUION CONT IGUAL . FILE_PATH
+
+    CADENA_FILE_PATH shift and go to state 238
+    FILE_PATH       shift and go to state 239
+
+
+state 209
+
+    (158) param_filen -> GUION ID IGUAL . CADENA_FILE_PATH
+    (159) param_filen -> GUION ID IGUAL . FILE_PATH
+
+    CADENA_FILE_PATH shift and go to state 240
+    FILE_PATH       shift and go to state 241
+
+
+state 210
+
+    (160) param_path2 -> GUION PATH IGUAL . CADENA_DIR_PATH
+    (161) param_path2 -> GUION PATH IGUAL . DIR_PATH
+
+    CADENA_DIR_PATH shift and go to state 242
+    DIR_PATH        shift and go to state 243
+
+
+state 211
+
+    (137) param_path -> GUION PATH IGUAL . CADENA_FILE_PATH
+    (138) param_path -> GUION PATH IGUAL . FILE_PATH
+    (160) param_path2 -> GUION PATH IGUAL . CADENA_DIR_PATH
+    (161) param_path2 -> GUION PATH IGUAL . DIR_PATH
+
+    CADENA_FILE_PATH shift and go to state 215
+    FILE_PATH       shift and go to state 216
+    CADENA_DIR_PATH shift and go to state 242
+    DIR_PATH        shift and go to state 243
+
+
+state 212
+
+    (162) param_name_2 -> GUION NAME IGUAL . NAME_2
+    (140) param_name -> GUION NAME IGUAL . ID
+
+    NAME_2          shift and go to state 244
+    ID              shift and go to state 218
+
+
+state 213
+
+    (136) param_size -> GUION SIZE IGUAL ENTERO .
+
+    GUION           reduce using rule 136 (param_size -> GUION SIZE IGUAL ENTERO .)
+    $end            reduce using rule 136 (param_size -> GUION SIZE IGUAL ENTERO .)
+
+
+state 214
+
+    (139) param_unit -> GUION UNIT IGUAL ID .
+
+    GUION           reduce using rule 139 (param_unit -> GUION UNIT IGUAL ID .)
+    $end            reduce using rule 139 (param_unit -> GUION UNIT IGUAL ID .)
+
+
+state 215
+
+    (137) param_path -> GUION PATH IGUAL CADENA_FILE_PATH .
+
+    GUION           reduce using rule 137 (param_path -> GUION PATH IGUAL CADENA_FILE_PATH .)
+    $end            reduce using rule 137 (param_path -> GUION PATH IGUAL CADENA_FILE_PATH .)
+
+
+state 216
+
+    (138) param_path -> GUION PATH IGUAL FILE_PATH .
+
+    GUION           reduce using rule 138 (param_path -> GUION PATH IGUAL FILE_PATH .)
+    $end            reduce using rule 138 (param_path -> GUION PATH IGUAL FILE_PATH .)
+
+
+state 217
+
+    (141) param_fit -> GUION FIT IGUAL ID .
+
+    GUION           reduce using rule 141 (param_fit -> GUION FIT IGUAL ID .)
+    $end            reduce using rule 141 (param_fit -> GUION FIT IGUAL ID .)
+
+
+state 218
+
+    (140) param_name -> GUION NAME IGUAL ID .
+
+    GUION           reduce using rule 140 (param_name -> GUION NAME IGUAL ID .)
+    $end            reduce using rule 140 (param_name -> GUION NAME IGUAL ID .)
+
+
+state 219
+
+    (146) param_id -> GUION ID_WORD IGUAL ID_PAR .
+
+    GUION           reduce using rule 146 (param_id -> GUION ID_WORD IGUAL ID_PAR .)
+    $end            reduce using rule 146 (param_id -> GUION ID_WORD IGUAL ID_PAR .)
+
+
+state 220
+
+    (163) param_ruta -> GUION RUTA IGUAL CADENA_FILE_PATH .
+
+    GUION           reduce using rule 163 (param_ruta -> GUION RUTA IGUAL CADENA_FILE_PATH .)
+    $end            reduce using rule 163 (param_ruta -> GUION RUTA IGUAL CADENA_FILE_PATH .)
+
+
+state 221
+
+    (164) param_ruta -> GUION RUTA IGUAL FILE_PATH .
+
+    GUION           reduce using rule 164 (param_ruta -> GUION RUTA IGUAL FILE_PATH .)
+    $end            reduce using rule 164 (param_ruta -> GUION RUTA IGUAL FILE_PATH .)
+
+
+state 222
+
+    (165) param_ruta2 -> GUION RUTA IGUAL CADENA_DIR_PATH .
+
+    GUION           reduce using rule 165 (param_ruta2 -> GUION RUTA IGUAL CADENA_DIR_PATH .)
+    $end            reduce using rule 165 (param_ruta2 -> GUION RUTA IGUAL CADENA_DIR_PATH .)
+
+
+state 223
+
+    (166) param_ruta2 -> GUION RUTA IGUAL DIR_PATH .
+
+    GUION           reduce using rule 166 (param_ruta2 -> GUION RUTA IGUAL DIR_PATH .)
+    $end            reduce using rule 166 (param_ruta2 -> GUION RUTA IGUAL DIR_PATH .)
+
+
+state 224
+
+    (142) param_type -> GUION TYPE IGUAL ID .
+
+    GUION           reduce using rule 142 (param_type -> GUION TYPE IGUAL ID .)
+    $end            reduce using rule 142 (param_type -> GUION TYPE IGUAL ID .)
+
+
+state 225
+
+    (143) param_delete -> GUION DELETE IGUAL ID .
+
+    GUION           reduce using rule 143 (param_delete -> GUION DELETE IGUAL ID .)
+    $end            reduce using rule 143 (param_delete -> GUION DELETE IGUAL ID .)
+
+
+state 226
+
+    (168) entero_negativo -> GUION . ENTERO
+
+    ENTERO          shift and go to state 245
+
+
+state 227
+
+    (144) param_add -> GUION ADD IGUAL ENTERO .
+
+    GUION           reduce using rule 144 (param_add -> GUION ADD IGUAL ENTERO .)
+    $end            reduce using rule 144 (param_add -> GUION ADD IGUAL ENTERO .)
+
+
+state 228
+
+    (145) param_add -> GUION ADD IGUAL entero_negativo .
+
+    GUION           reduce using rule 145 (param_add -> GUION ADD IGUAL entero_negativo .)
+    $end            reduce using rule 145 (param_add -> GUION ADD IGUAL entero_negativo .)
+
+
+state 229
+
+    (147) param_fs -> GUION FS IGUAL 2FS .
+
+    GUION           reduce using rule 147 (param_fs -> GUION FS IGUAL 2FS .)
+    $end            reduce using rule 147 (param_fs -> GUION FS IGUAL 2FS .)
+
+
+state 230
+
+    (148) param_fs -> GUION FS IGUAL 3FS .
+
+    GUION           reduce using rule 148 (param_fs -> GUION FS IGUAL 3FS .)
+    $end            reduce using rule 148 (param_fs -> GUION FS IGUAL 3FS .)
+
+
+state 231
+
+    (149) param_user -> GUION USER IGUAL ID .
+
+    GUION           reduce using rule 149 (param_user -> GUION USER IGUAL ID .)
+    $end            reduce using rule 149 (param_user -> GUION USER IGUAL ID .)
+
+
+state 232
+
+    (150) param_user -> GUION USER IGUAL CADENA_SIMPLE .
+
+    GUION           reduce using rule 150 (param_user -> GUION USER IGUAL CADENA_SIMPLE .)
+    $end            reduce using rule 150 (param_user -> GUION USER IGUAL CADENA_SIMPLE .)
+
+
+state 233
+
+    (151) param_pass -> GUION PASS IGUAL ID .
+
+    GUION           reduce using rule 151 (param_pass -> GUION PASS IGUAL ID .)
+    $end            reduce using rule 151 (param_pass -> GUION PASS IGUAL ID .)
+
+
+state 234
+
+    (152) param_pass -> GUION PASS IGUAL ENTERO .
+
+    GUION           reduce using rule 152 (param_pass -> GUION PASS IGUAL ENTERO .)
+    $end            reduce using rule 152 (param_pass -> GUION PASS IGUAL ENTERO .)
+
+
+state 235
+
+    (167) param_name__cadena -> GUION NAME IGUAL CADENA_SIMPLE .
+
+    GUION           reduce using rule 167 (param_name__cadena -> GUION NAME IGUAL CADENA_SIMPLE .)
+    $end            reduce using rule 167 (param_name__cadena -> GUION NAME IGUAL CADENA_SIMPLE .)
+
+
+state 236
+
+    (153) param_grp -> GUION GRP IGUAL ID .
+
+    GUION           reduce using rule 153 (param_grp -> GUION GRP IGUAL ID .)
+    $end            reduce using rule 153 (param_grp -> GUION GRP IGUAL ID .)
+
+
+state 237
+
+    (154) param_grp -> GUION GRP IGUAL CADENA_SIMPLE .
+
+    GUION           reduce using rule 154 (param_grp -> GUION GRP IGUAL CADENA_SIMPLE .)
+    $end            reduce using rule 154 (param_grp -> GUION GRP IGUAL CADENA_SIMPLE .)
+
+
+state 238
+
+    (156) param_cont -> GUION CONT IGUAL CADENA_FILE_PATH .
+
+    GUION           reduce using rule 156 (param_cont -> GUION CONT IGUAL CADENA_FILE_PATH .)
+    $end            reduce using rule 156 (param_cont -> GUION CONT IGUAL CADENA_FILE_PATH .)
+
+
+state 239
+
+    (157) param_cont -> GUION CONT IGUAL FILE_PATH .
+
+    GUION           reduce using rule 157 (param_cont -> GUION CONT IGUAL FILE_PATH .)
+    $end            reduce using rule 157 (param_cont -> GUION CONT IGUAL FILE_PATH .)
+
+
+state 240
+
+    (158) param_filen -> GUION ID IGUAL CADENA_FILE_PATH .
+
+    GUION           reduce using rule 158 (param_filen -> GUION ID IGUAL CADENA_FILE_PATH .)
+    $end            reduce using rule 158 (param_filen -> GUION ID IGUAL CADENA_FILE_PATH .)
+
+
+state 241
+
+    (159) param_filen -> GUION ID IGUAL FILE_PATH .
+
+    GUION           reduce using rule 159 (param_filen -> GUION ID IGUAL FILE_PATH .)
+    $end            reduce using rule 159 (param_filen -> GUION ID IGUAL FILE_PATH .)
+
+
+state 242
+
+    (160) param_path2 -> GUION PATH IGUAL CADENA_DIR_PATH .
+
+    GUION           reduce using rule 160 (param_path2 -> GUION PATH IGUAL CADENA_DIR_PATH .)
+    $end            reduce using rule 160 (param_path2 -> GUION PATH IGUAL CADENA_DIR_PATH .)
+
+
+state 243
+
+    (161) param_path2 -> GUION PATH IGUAL DIR_PATH .
+
+    GUION           reduce using rule 161 (param_path2 -> GUION PATH IGUAL DIR_PATH .)
+    $end            reduce using rule 161 (param_path2 -> GUION PATH IGUAL DIR_PATH .)
+
+
+state 244
+
+    (162) param_name_2 -> GUION NAME IGUAL NAME_2 .
+
+    GUION           reduce using rule 162 (param_name_2 -> GUION NAME IGUAL NAME_2 .)
+    $end            reduce using rule 162 (param_name_2 -> GUION NAME IGUAL NAME_2 .)
+
+
+state 245
+
+    (168) entero_negativo -> GUION ENTERO .
+
+    GUION           reduce using rule 168 (entero_negativo -> GUION ENTERO .)
+    $end            reduce using rule 168 (entero_negativo -> GUION ENTERO .)
+
