@@ -10,5 +10,5 @@ class MountList(Comando):
         particiones = obtener_particiones()
         print_particiones = ""
         for particion in particiones:
-            print_particiones += "ID:" + particion.id + "Tipo:" + particion.tipo_particion + "Nombre:" + particion.nombre
+            print_particiones += "ID:" + particion.id + " Tipo:" + particion.tipo_particion + " Nombre:" + particion.nombre + "\n"
         return print_particiones

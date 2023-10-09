@@ -5,6 +5,7 @@ const consola = document.getElementById('textSalida');//textarea
 const inputFile = document.createElement('input');
 const btnAbrir = document.getElementById("abrirArchivo");
 const btnEjecutar = document.getElementById('btnEjecutar')
+const btnReportes = document.getElementById('btnReportes')
 
 inputFile.type = 'file';
 inputFile.accept = '.adsj';
@@ -88,6 +89,10 @@ btnEjecutar.addEventListener("click", async () => {
     localStorage.setItem("salida", "")
     for (const linea of comandos.split("\n")) {
         console.log(linea)
+        if (linea.includes("pause")) {
+            alert("Pausado")
+            continue
+        }
         await fetch(url + "/ejecutar", {
             method : 'POST',
             headers : {
@@ -100,4 +105,18 @@ btnEjecutar.addEventListener("click", async () => {
             localStorage.setItem("salida", localStorage.getItem("salida") + res.mensaje)
         })
     }
+    consola.value = localStorage.getItem("salida")
+});
+
+btnReportes.addEventListener("click", () => {
+    fetch(url + "/reportes", {
+        method : 'GET',
+        headers : {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then((res) => res.json())
+    .then((res) => {
+        console.log(res)
+    })
 });

@@ -2,6 +2,7 @@ from .estructuras.estructura_mbr import Mbr
 from .estructuras.estructura_superbloque import SuperBloque
 from .comando_base import Comando
 from .mount import obtener_particiones
+from .reportes import agregar_reportes
 from graphviz import Source
 import os
 
@@ -39,8 +40,8 @@ class Rep(Comando):
                     reporte_graphviz = estruct_mbr.reporte_mbr(archivo_binario)
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
-                    # print(reporte_graphviz)
-                    grafo.render(ruta_final) # falta quitar el .extension porque se pone doble
+                    grafo.render(ruta_final)
+                agregar_reportes(path_particion)
                 return "--Reporte mbr creado--\n"
             case "disk":
                 particiones = obtener_particiones()
@@ -57,8 +58,8 @@ class Rep(Comando):
                     #print(reporte_graphviz)
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
-                    # print(reporte_graphviz)
-                    grafo.render(ruta_final) # falta quitar el .extension porque se pone doble
+                    grafo.render(ruta_final)
+                agregar_reportes(path_particion)
                 return "--Reporte disk creado--\n"
             case "sb":
                 particiones = obtener_particiones()
@@ -79,6 +80,7 @@ class Rep(Comando):
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
                     grafo.render(ruta_final)
+                agregar_reportes(path_particion)
                 return "--Reporte sb creado--\n"
             case "bm_inode":
                 particiones = obtener_particiones()
@@ -97,6 +99,7 @@ class Rep(Comando):
                     reportetxt = estruct_sb.reporte_bm_inodo(archivo_binario)
                     with open(path_particion, "w+") as archivo_reporte:
                         archivo_reporte.write(reportetxt)
+                agregar_reportes(path_particion)
                 return "--Reporte bm_inode creado--\n"
             case "bm_block":
                 particiones = obtener_particiones()
@@ -115,6 +118,7 @@ class Rep(Comando):
                     reportetxt = estruct_sb.reporte_bm_bloc(archivo_binario)
                     with open(path_particion, "w+") as archivo_reporte:
                         archivo_reporte.write(reportetxt)
+                agregar_reportes(path_particion)
                 return "--Reporte bm_block creado--\n"
             case "inode":
                 particiones = obtener_particiones()
@@ -133,8 +137,8 @@ class Rep(Comando):
                     reporte_graphviz = estruct_sb.reporte_inodos(archivo_binario)
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
-                    # print(reporte_graphviz)
                     grafo.render(ruta_final)
+                agregar_reportes(path_particion)
                 return "--Reporte inode creado--\n"
             case "block":
                 particiones = obtener_particiones()
@@ -153,8 +157,8 @@ class Rep(Comando):
                     reporte_graphviz = estruct_sb.reporte_bloques(archivo_binario)
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
-                    # print(reporte_graphviz)
                     grafo.render(ruta_final)
+                agregar_reportes(path_particion)
                 return "--Reporte block creado--\n"
             case "tree":
                 particiones = obtener_particiones()
@@ -174,8 +178,8 @@ class Rep(Comando):
                     #print(reporte_graphviz)
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
-                    # print(reporte_graphviz)
                     grafo.render(ruta_final)
+                agregar_reportes(path_particion)
                 return "--Reporte tree creado--\n"
             case "file":
                 particiones = obtener_particiones()
@@ -199,6 +203,7 @@ class Rep(Comando):
                         return "Error: el archivo no existe\n"
                     with open(path_particion, "w+") as archivo_reporte:
                         archivo_reporte.write(reportetxt)
+                agregar_reportes(path_particion)
                 return "--Reporte file creado--\n"
             case "ls":
                 particiones = obtener_particiones()
@@ -221,8 +226,8 @@ class Rep(Comando):
                     #print(reporte_graphviz)
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
-                    # print(reporte_graphviz)
                     grafo.render(ruta_final)
+                agregar_reportes(path_particion)
                 return "--Reporte ls creado--\n"
             case "journaling":
                 particiones = obtener_particiones()
@@ -244,6 +249,7 @@ class Rep(Comando):
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
                     # print(reporte_graphviz)
                     grafo.render(ruta_final)
+                agregar_reportes(path_particion)
                 return "--Reporte journaling creado--\n"
             case _:
                 return "Error: el valor del parametro name es incorrecto\n"

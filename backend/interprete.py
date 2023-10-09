@@ -158,11 +158,11 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
 
 # caracteres ignorados
-t_ignore = ' \t'
+t_ignore = ' \t\r'
 
 def t_error(t):
     global error
-    error = f'Error: Caracter no reconocido, {t.value[0]}\n' # {t.lexer.lineno}
+    error = f'Error: Caracter no reconocido, {t.value[0]} colum {t.lexer.lineno}\n' # {t.lexer.lineno}
     t.lexer.skip(1)
 
 #-------------------------------ANALIZADOR SINTACTICO---------------------------------------------------------------------
@@ -711,6 +711,7 @@ lexer = lex.lex()
 
 # llevarla al main
 def parse(input):
+    global error
     global parser
     parser = yacc.yacc()
     lexer.lineno = 1
