@@ -9,11 +9,8 @@ class Rmdisk(Comando):
     def ejecutar(self):
         direccion = self.parametros.get("path")
         if direccion == None:
-            print("--Error: Faltan parametros--")
-            return False
+            return "Error: Faltan parametros\n"
         if not os.path.isfile(direccion):
-            print("--Error: La ruta no es un archivo valido--")
-            return False
+            return "Error: La ruta no es un archivo valido\n"
         os.remove(direccion)
-        print("\n--El disco se elimino correctamente--\n")
-        return True
+        return "--El disco se elimino correctamente--\n"

@@ -8,5 +8,7 @@ class MountList(Comando):
     
     def ejecutar(self):
         particiones = obtener_particiones()
+        print_particiones = ""
         for particion in particiones:
-            print("ID:", particion.id, "Tipo:", particion.tipo_particion, "Nombre:", particion.nombre)
+            print_particiones += "ID:" + particion.id + "Tipo:" + particion.tipo_particion + "Nombre:" + particion.nombre
+        return print_particiones

@@ -3,10 +3,14 @@ const codigo = document.getElementById('textComandos');//textarea
 const lineNumbersConsole = document.querySelector('.line-numbers-consola')
 const consola = document.getElementById('textSalida');//textarea
 const inputFile = document.createElement('input');
+const btnAbrir = document.getElementById("abrirArchivo");
+const btnEjecutar = document.getElementById('btnEjecutar')
+
 inputFile.type = 'file';
 inputFile.accept = '.adsj';
 inputFile.style.display = 'none';
 document.body.appendChild(inputFile);
+url = 'http://127.0.0.1:4000'
 
 document.addEventListener("DOMContentLoaded", (e) => {
     e.preventDefault;
@@ -14,6 +18,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
         codigo.value = localStorage.getItem("texto")
         let dispararEvento = new Event("keyup")
         codigo.dispatchEvent(dispararEvento)
+    }
+    if (localStorage.getItem("salida") != null) {
+        consola.value = localStorage.getItem("salida")
+        let dispararEvento = new Event("keyup")
+        consola.dispatchEvent(dispararEvento)
     }
     e.stopPropagation;
 });
@@ -51,6 +60,8 @@ consola.addEventListener("keyup", event => {
 
 inputFile.addEventListener('change', () => {
     const file = inputFile.files[0];
+    console.log(file.path)
+    console.log(file.webkitRelativePath )
     const reader = new FileReader();
     reader.readAsText(file);
     reader.onload = () => {
@@ -60,4 +71,33 @@ inputFile.addEventListener('change', () => {
       let dispararEvento = new Event("keyup")
       codigo.dispatchEvent(dispararEvento)
     };
+});
+
+btnAbrir.addEventListener("click", (e) =>{
+    e.preventDefault();
+    inputFile.click();
+    e.stopPropagation();
+});
+
+btnEjecutar.addEventListener("click", async () => {
+    comandos = localStorage.getItem("texto")
+    if (comandos == null) {
+        alert("Carga un archivo primero")
+        return
+    }
+    localStorage.setItem("salida", "")
+    for (const linea of comandos.split("\n")) {
+        console.log(linea)
+        await fetch(url + "/ejecutar", {
+            method : 'POST',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify({comando: linea})
+        })
+        .then((res) => res.json())
+        .then((res) => {
+            localStorage.setItem("salida", localStorage.getItem("salida") + res.mensaje)
+        })
+    }
 });

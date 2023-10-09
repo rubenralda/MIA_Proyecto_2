@@ -11,15 +11,12 @@ class Mkgrp(Comando):
     def ejecutar(self):
         name = self.parametros.get("name")
         if name == None:
-            print("--Error: Faltan parametros--")
-            return False
+            return "Error: Faltan parametros\n"
         if not is_sesion():
-            print("--Error: no hay una sesion abierta--")
-            return False
+            return "Error: no hay una sesion abierta\n"
         usuario = valor_usuario()
         if usuario.nombre_user != "root":
-            print("--Error: requere permisos de usuario root--")
-            return False
+            return "Error: requere permisos de usuario root\n"
         id_particion = usuario.id_particion
         particiones_montadas = obtener_particiones()
         for particion in particiones_montadas:
@@ -31,5 +28,5 @@ class Mkgrp(Comando):
                     superbloque.agregar_grupo_userstxt(archivo_binario, name)
                     archivo_binario.seek(particion.start)
                     archivo_binario.write(superbloque.get_bytes())
-                    print("\n--Grupo agregado--\n")
-                    return True
+                    return "--Grupo agregado--\n"
+        return "Error: particion no encontrada\n"

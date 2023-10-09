@@ -13,8 +13,7 @@ class Login(Comando):
         user = self.parametros.get("user")
         contra = self.parametros.get("pass")
         if id == None or user == None or contra == None:
-            print("--Error: Faltan parametros--")
-            return False
+            return "Error: Faltan parametros\n"
         particiones_montadas = obtener_particiones()
         for particion in particiones_montadas:
             if particion.id == id:
@@ -25,7 +24,7 @@ class Login(Comando):
                     usuarios = superbloque.archivo_userstxt(archivo_binario)
                     #print(usuarios)
                     if usuarios == None:
-                        print("--Error: error muy inesperado--")
+                        return "Error: archivo users.txt no existe\n"
                     lineas = usuarios.split("\n")[:-1]
                     lineas_grupo = lineas
                     for linea in lineas:
@@ -43,13 +42,9 @@ class Login(Comando):
                                     if dato[2] == items[2]:
                                         id_grupo = dato[0]
                                 if iniciar_sesion(items[0], user, items[2], id, id_grupo):
-                                    print("\n--Sesion iniciada--\n")
-                                    return True
+                                    return "--Sesion iniciada--\n"
                                 else:
-                                    print("--Error: Ya hay un sesion abierta--")
-                                    return False
+                                    return "Error: Ya hay un sesion abierta\n"
                             else:
-                                print("--Error: el password no coincide--")
-                                return False
-        print("--Error: Particion no encontrada--")
-        return False
+                                return "Error: el password no coincide\n"
+        return "Error: Particion no encontrada\n"

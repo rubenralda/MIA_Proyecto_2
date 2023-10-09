@@ -52,22 +52,20 @@ class Mbr(EstructuraBase):
                     if particion.tipo == "E":
                         particion_logica = Ebr(True, fit, 0, size, -1, name)
                         return particion.crear_particion_logica(archivo_binario, particion_logica)
-            print("--Error: No hay particion extendida--")
-            return False
+            return {"status": False, "mensaje": "Error: No hay particion extendida\n"}
         else:  # particion Extendidia o primaria
             if tipo == "E": # verifico si no existe ya una
                 for particion in self.particiones:
                     if particion.status == "V":
                         if particion.tipo == "E":
-                            print("--Error: Ya existe una particion extendida--")
-                            return False
+                            return {"status": False, "mensaje": "Error: Ya existe una particion extendida\n"}
             if self.fit == "F":  # firt fit
                 return self.crear_particion_ff(size, name, tipo, fit, archivo_binario)
             elif self.fit == "B":  # best fit
                 return self.crear_particion_bf(size, name, tipo, fit, archivo_binario)
             elif self.fit == "W":  # worst fit
                 return self.crear_particion_wf(size, name, tipo, fit, archivo_binario)
-            return False
+            return {"status": False, "mensaje": "Error: algo inesperado en crear particion\n"}
 
     # Crea una particion con primer ajuste (first fit)
     def crear_particion_ff(self, size_particion: int, name_particion: str, tipo_particion: str, fit_particion: str, archivo_binario):
@@ -88,20 +86,17 @@ class Mbr(EstructuraBase):
                             if tipo_particion == "E":
                                 nueva_particion.crear_extendida(archivo_binario)
                             self.particiones[indice_particion] = nueva_particion
-                            print("\n--Particion creada--\n")
-                            return True
+                            return {"status": True, "mensaje": "--Particion creada--\n"}
                     if start + size_particion <= self.tamano: # por si es la ultima particion
                         nueva_particion.start = start
                         if tipo_particion == "E":
                             nueva_particion.crear_extendida(archivo_binario)
                         self.particiones[indice_particion] = nueva_particion
-                        print("\n--Particion creada--\n")
-                        return True
+                        return {"status": True, "mensaje": "--Particion creada--\n"}
                 except:
                     continue
             start += self.particiones[indice_particion].s
-        print("--Error: no hay espacio para crear la particion E o P--") 
-        return False
+        return {"status": False, "mensaje": "Error: no hay espacio para crear la particion E o P\n"}
     
     # Crear particion con el mejor ajuste (Best Fit)
     def crear_particion_bf(self, size_particion: int, name_particion: str, tipo_particion: str, fit_particion: str, archivo_binario):
@@ -135,15 +130,13 @@ class Mbr(EstructuraBase):
                         }
                         espacios.append(nuevo_espacio)
                         break
-                    print("--Error: La particion es muy grande--")
-                    return False
+                    return {"status": False, "mensaje": "Error: La particion es muy grande\n"}
                 except:
                     continue
             start += self.particiones[indice_particion].s
         # Ahora con los espacios libres guardados vemos el mas pequeño de todos
         if len(espacios) == 0:
-            print("--Error: no hay espacio para crear la particion E o P--")
-            return False
+            return {"status": False, "mensaje": "Error: no hay espacio para crear la particion E o P\n"}
         espacio_short = espacios[0]
         for espaciolibre in espacios:
             if espaciolibre["tamano"] < espacio_short["tamano"]:
@@ -152,8 +145,7 @@ class Mbr(EstructuraBase):
         if tipo_particion == "E":
             nueva_particion.crear_extendida(archivo_binario)
         self.particiones[espacio_short["indice_particion"]] = nueva_particion
-        print("\n--Particion creada--\n")
-        return True
+        return {"status": True, "mensaje": "--Particion creada--\n"}
     
     # Crear particion con el peor ajuste (worst Fit)
     def crear_particion_wf(self, size_particion: int, name_particion: str, tipo_particion: str, fit_particion: str, archivo_binario):
@@ -186,15 +178,13 @@ class Mbr(EstructuraBase):
                         }
                         espacios.append(nuevo_espacio)
                         break
-                    print("--Error: La particion es muy grande--")
-                    return False
+                    return {"status": False, "mensaje": "Error: La particion es muy grande\n"}
                 except:
                     continue
             start += self.particiones[indice_particion].s
         # Ahora con los espacios libres guardados vemos el mas grande de todos
         if len(espacios) == 0:
-            print("--Error: no hay espacio para crear la particion E o P--")
-            return False
+            return {"status": False, "mensaje": "Error: no hay espacio para crear la particion E o P\n"}
         espacio__grande = espacios[0]
         for espaciolibre in espacios:
             if espaciolibre["tamano"] > espacio__grande["tamano"]:
@@ -203,8 +193,7 @@ class Mbr(EstructuraBase):
         if tipo_particion == "E":
             nueva_particion.crear_extendida(archivo_binario)
         self.particiones[espacio__grande["indice_particion"]] = nueva_particion
-        print("\n--Particion creada--\n")
-        return True
+        return {"status": True, "mensaje": "--Particion creada--\n"}
     
     # True si fue exitoso, False si no
     def eliminar_particion(self, name: str, archivo_binario):

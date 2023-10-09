@@ -13,15 +13,12 @@ class Mkusr(Comando):
         contra = self.parametros.get("pass")
         grp = self.parametros.get("grp")
         if user == None or contra == None or grp == None:
-            print("--Error: Faltan parametros--")
-            return False
+            return "Error: Faltan parametros\n"
         if not is_sesion():
-            print("--Error: no hay una sesion abierta--")
-            return False
+            return "Error: no hay una sesion abierta\n"
         usuario = valor_usuario()
         if usuario.nombre_user != "root":
-            print("--Error: requere permisos de usuario root--")
-            return False
+            return "Error: requere permisos de usuario root\n"
         id_particion = usuario.id_particion
         particiones_montadas = obtener_particiones()
         for particion in particiones_montadas:
@@ -31,8 +28,8 @@ class Mkusr(Comando):
                     superbloque = SuperBloque(0,0,0)
                     superbloque.set_bytes(archivo_binario)
                     if not superbloque.agregar_usuario_userstxt(archivo_binario, user, contra, grp):
-                        return False
+                        return "Error: el grupo no existe\n"
                     archivo_binario.seek(particion.start)
                     archivo_binario.write(superbloque.get_bytes())
-                    print("\n--Usuario agregado--\n")
-                    return True
+                    return "--Usuario agregado--\n"
+        return "Error: particion no encontrada\n"

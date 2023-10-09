@@ -11,15 +11,12 @@ class Rmusr(Comando):
     def ejecutar(self):
         user = self.parametros.get("user")
         if user == None:
-            print("--Error: Faltan parametros--")
-            return False
+            return "Error: Faltan parametros\n"
         if not is_sesion():
-            print("--Error: no hay una sesion abierta--")
-            return False
+            return "Error: no hay una sesion abierta\n"
         usuario = valor_usuario()
         if usuario.nombre_user != "root":
-            print("--Error: requere permisos de usuario root--")
-            return False
+            return "Error: requere permisos de usuario root\n"
         id_particion = usuario.id_particion
         particiones_montadas = obtener_particiones()
         for particion in particiones_montadas:
@@ -29,8 +26,8 @@ class Rmusr(Comando):
                     superbloque = SuperBloque(0,0,0)
                     superbloque.set_bytes(archivo_binario)
                     if not superbloque.eliminar_usuario_userstxt(archivo_binario, user):
-                        return False
+                        return "Error: el nombre de usuario no existe\n"
                     archivo_binario.seek(particion.start)
                     archivo_binario.write(superbloque.get_bytes())
-                    print("\n--Usuario Eliminado--\n")
-                    return True
+                    return "--Usuario Eliminado--\n"
+        return "Error: particion no encontrada\n"

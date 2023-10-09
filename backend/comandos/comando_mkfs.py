@@ -14,13 +14,11 @@ class Mkfs(Comando):
     def ejecutar(self):
         id = self.parametros.get("id")
         if id == None:
-            print("--Error: Faltan parametros--")
-            return False
+            return "Error: Faltan parametros\n"
         fs = self.parametros.get("fs", "2fs")
         tipo_formateo = self.parametros.get("type", "full") # parece que no se usa
         if tipo_formateo.lower() != "full":
-            print("--Error: valor de parametro incorrecto--")
-            return False
+            return "Error: valor de parametro incorrecto\n"
         file_system = 0 # ext2
         if fs == "3fs":
             file_system = 1 # ext3
@@ -28,7 +26,6 @@ class Mkfs(Comando):
         for particion in particiones_montadas:
             if particion.id == id:
                 with open(particion.path_disco, "rb+") as archivo_binario:
-                    #print(particion.start, "---------------------")
                     superbloque = SuperBloque(file_system, particion.start, particion.size)
                     superbloque.bloque_libres_count -= 2 # por la carpeta raiz y archivo users.txt
                     superbloque.inodos_libres_count -= 2 # por el inodo raiz y archivo users.txt
@@ -102,7 +99,5 @@ class Mkfs(Comando):
                     archivo_user = BloqueArchivos(usuarios_root) # bloque 1
                     archivo_binario.seek(superbloque.bloque_start + superbloque.tamano_bloque)
                     archivo_binario.write(archivo_user.get_bytes())
-                    print("\n--Formateo completo--\n")
-                    return True
-        print("--Error: La particion no existe--")
-        return False
+                    return "--Formateo completo--\n"
+        return "Error: La particion no existe\n"

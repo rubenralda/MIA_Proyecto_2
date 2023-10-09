@@ -85,6 +85,7 @@ class SuperBloque(EstructuraBase):
         contenido = inodo_archivo.restaurar_archivo(self.bloque_start, self.tamano_bloque, archivo_binario)
         if contenido == None:
             print("--Error: error muy inesperado--")
+            return False
         lineas = contenido.split("\n")[:-1]
         id = 1
         for linea in lineas:
@@ -111,6 +112,7 @@ class SuperBloque(EstructuraBase):
         contenido = inodo_archivo.restaurar_archivo(self.bloque_start, self.tamano_bloque, archivo_binario)
         if contenido == None:
             print("--Error: error muy inesperado--")
+            return False
         lineas = contenido.split("\n")[:-1]
         nuevo_contenido = ""
         cambiado = False
@@ -124,7 +126,6 @@ class SuperBloque(EstructuraBase):
                     continue
             nuevo_contenido += linea + "\n"
         if not cambiado:
-            print("--Error: el nombre de grupo no existe--")
             return False
         # escribir de nuevo el contenido
         self.guardar_operacion("RMGRP", nuevo_contenido, "/users.txt", archivo_binario)
@@ -144,6 +145,7 @@ class SuperBloque(EstructuraBase):
         contenido = inodo_archivo.restaurar_archivo(self.bloque_start, self.tamano_bloque, archivo_binario)
         if contenido == None:
             print("--Error: error muy inesperado--")
+            return False
         lineas = contenido.split("\n")[:-1]
         id = 1
         existe_grupo = False
@@ -154,7 +156,6 @@ class SuperBloque(EstructuraBase):
             elif items[2] == nombre_grupo:
                     existe_grupo = True
         if not existe_grupo:
-            print("--Error: el grupo no existe--")
             return False
         contenido += str(id) + ",U,"+ nombre_grupo + "," + nombre_usuario + "," + contra + "\n"
         # escribir de nuevo el contenido
@@ -175,6 +176,7 @@ class SuperBloque(EstructuraBase):
         contenido = inodo_archivo.restaurar_archivo(self.bloque_start, self.tamano_bloque, archivo_binario)
         if contenido == None:
             print("--Error: error muy inesperado--")
+            return False
         lineas = contenido.split("\n")[:-1]
         nuevo_contenido = ""
         cambiado = False
@@ -188,7 +190,6 @@ class SuperBloque(EstructuraBase):
                     continue
             nuevo_contenido += linea + "\n"
         if not cambiado:
-            print("--Error: el nombre de usuario no existe--")
             return False
         # escribir de nuevo el contenido
         self.guardar_operacion("RMUSR", nuevo_contenido, "/users.txt", archivo_binario)
@@ -238,8 +239,7 @@ class SuperBloque(EstructuraBase):
             inodo_restaurado = Inodos()
             inodo_restaurado.set_bytes(archivo_binario)
             if inodo_restaurado.tipo != 0:
-                print("--Error: no es carpeta")
-                return False
+                return {"status" : False, "mensaje" : "Error: no es carpeta\n"}
             try:
                 for i in range(12):
                     if inodo_restaurado.bloque[i] != -1:
@@ -257,8 +257,7 @@ class SuperBloque(EstructuraBase):
                 numero_inodo = self.primer_inodo_libre
                 self.crear_carpeta(archivo_binario, "/".join(path_split[:x + 2]), True, id_usuario, id_grpo)
                 continue
-            print("--Error: La ruta no existe--")
-            return False
+            return {"status" : False, "mensaje" : "Error: La ruta no existe\n"}
         # tengo el numero de inodo_carpeta que contendra la nueva carpeta
         # creo el inodo archivo
         inodo_carpeta = Inodos()
@@ -299,7 +298,7 @@ class SuperBloque(EstructuraBase):
             archivo_binario.write(carpeta_padre.get_bytes())
             self.escribir_carpeta(archivo_binario, inodo_carpeta, self.primer_inodo_libre)
             self.guardar_operacion("MKDIR", "--", path, archivo_binario)
-            return True
+            return {"status" : True, "mensaje" : "--Carpeta creada--\n"}
         elif posicion_bloque_contenedor != -1: # crear un nuevo bloque de carpetas
             carpeta_nueva = BloqueCarpetas()
             contenido = ContenidoCarpeta(nombre_carpeta, self.primer_inodo_libre)
@@ -313,8 +312,8 @@ class SuperBloque(EstructuraBase):
             self.utilizar_un_bloque(archivo_binario)
             self.escribir_carpeta(archivo_binario, inodo_carpeta, self.primer_inodo_libre)
             self.guardar_operacion("MKDIR", "--", path, archivo_binario)
-            return True
-        return False
+            return {"status" : True, "mensaje" : "--Carpeta creada--\n"}
+        return {"status" : False, "mensaje" : "Error: algo inesperado al crear la carpeta\n"}
 
     def escribir_carpeta(self, archivo_binario, inodo_carpeta: Inodos, numero_inodo: int):
         carpeta_nueva = BloqueCarpetas()
@@ -337,7 +336,7 @@ class SuperBloque(EstructuraBase):
         else:
             bloques_archivo = ceil(size / self.tamano_bloque) #numero de bloques
         if bloques_archivo >= self.bloque_libres_count:
-            print("--Error: La particion esta llena--")
+            return {"status" : False, "mensaje" : "Error: La particion esta llena\n"}
         path_split = os.path.dirname(path).split("/")
         carpetas = path_split[1:] # path.split("/")[1:]
         nombre_archivo = os.path.basename(path)
@@ -349,8 +348,7 @@ class SuperBloque(EstructuraBase):
             inodo_restaurado = Inodos()
             inodo_restaurado.set_bytes(archivo_binario)
             if inodo_restaurado.tipo != 0:
-                print("--Error: no es carpeta")
-                return False
+                return {"status" : False, "mensaje" : "Error: no es carpeta\n"}
             try:
                 for i in range(12):
                     if inodo_restaurado.bloque[i] != -1:
@@ -368,8 +366,7 @@ class SuperBloque(EstructuraBase):
                 numero_inodo = self.primer_inodo_libre
                 self.crear_carpeta(archivo_binario, "/".join(path_split[:x + 2]), True, id_usuario, id_grpo)
                 continue
-            print("--Error: La ruta no existe--")
-            return False
+            return {"status" : False, "mensaje" : "Error: La ruta no existe\n"}
         # tengo el numero de inodo_carpeta que contiene o no el archivo a escribir
         # creo el inodo archivo
         inodo_archivo = Inodos()
@@ -414,7 +411,7 @@ class SuperBloque(EstructuraBase):
                 # logica para borrar el archivo
                 pass
             else:
-                return False
+                return {"status" : False, "mensaje" : "--Archivo no creado--\n"}
         if posicion_libre_bloque != -1:
             archivo_binario.seek(self.bloque_start + inodo_carpeta_contenedor.bloque[posicion_libre_bloque]*self.tamano_bloque)
             carpeta_del_archivo = BloqueCarpetas()
@@ -430,7 +427,7 @@ class SuperBloque(EstructuraBase):
                 archivo = "".join(random.choice(caracteres) for _ in range(size))
             self.escribir_archivo(archivo_binario, inodo_archivo, self.primer_inodo_libre, archivo)
             self.guardar_operacion("MKFILE", archivo, path, archivo_binario)
-            return True
+            return {"status" : True, "mensaje" : "--Archivo creado--\n"}
         elif posicion_bloque_contenedor != -1: # crear un nuevo bloque de carpetas
             carpeta_nueva = BloqueCarpetas()
             contenido = ContenidoCarpeta(nombre_archivo, self.primer_inodo_libre)
@@ -449,8 +446,8 @@ class SuperBloque(EstructuraBase):
                 archivo = "".join(random.choice(caracteres) for _ in range(size))
             self.escribir_archivo(archivo_binario, inodo_archivo, self.primer_inodo_libre, archivo)
             self.guardar_operacion("MKFILE", archivo, path, archivo_binario)
-            return True
-        return False
+            return {"status" : True, "mensaje" : "--Archivo creado--\n"}
+        return {"status" : False, "mensaje" : "Error: algo inesperado en crear archivo\n"}
     
     def escribir_archivo(self, archivo_binario,  inodo_archivo: Inodos, numero_inodo:int, nuevo_contenido:str):
         size = len(nuevo_contenido)

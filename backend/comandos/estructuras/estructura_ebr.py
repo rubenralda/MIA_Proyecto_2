@@ -26,8 +26,7 @@ class Ebr(EstructuraBase):
     def crear_particion_siguiente_bf(self, archivo_binario, particion, final: int, tamano_menor: int, particion_anterior):
         if self.siguiente == -1:
             if final < self.start + self.size + particion.size:
-               print("--Error: la particion logica es muy grande--")
-               return
+               return {"status": False, "mensaje": "Error: la particion logica es muy grande\n"}
             particion.start = particion_anterior.start + particion_anterior.size # va iniciar despues de actual
             particion.siguiente = particion_anterior.siguiente
             particion_anterior.siguiente = particion.start
@@ -37,8 +36,7 @@ class Ebr(EstructuraBase):
             # escribo la nueva particion
             archivo_binario.seek(particion.start)
             archivo_binario.write(particion.get_bytes())
-            print("\n--Particion logica creada--\n")
-            return
+            return {"status": True, "mensaje": "--Particion logica creada--\n"}
         else:
             archivo_binario.seek(self.siguiente)
             ebr_siguiente = Ebr(False, "W", 0, 0, -1, "")
@@ -50,13 +48,12 @@ class Ebr(EstructuraBase):
                     particion_anterior = self
             elif tamano_menor == final:
                 particion_anterior = ebr_siguiente
-            ebr_siguiente.crear_particion_siguiente_bf(archivo_binario, particion, final, tamano_menor, particion_anterior)
+            return ebr_siguiente.crear_particion_siguiente_bf(archivo_binario, particion, final, tamano_menor, particion_anterior)
 
     def crear_particion_siguiente_wf(self, archivo_binario, particion, final: int, tamano_mayor: int, particion_anterior):
         if self.siguiente == -1:
             if final < self.start + self.size + particion.size:
-               print("--Error: la particion logica es muy grande--")
-               return
+               return {"status": False, "mensaje": "Error: la particion logica es muy grande\n"}
             particion.start = particion_anterior.start + particion_anterior.size # va iniciar despues de actual
             particion.siguiente = particion_anterior.siguiente
             particion_anterior.siguiente = particion.start
@@ -66,8 +63,7 @@ class Ebr(EstructuraBase):
             # escribo la nueva particion
             archivo_binario.seek(particion.start)
             archivo_binario.write(particion.get_bytes())
-            print("\n--Particion logica creada--\n")
-            return
+            return {"status": True, "mensaje": "--Particion logica creada--\n"}
         else:
             archivo_binario.seek(self.siguiente)
             ebr_siguiente = Ebr(False, "W", 0, 0, -1, "")
@@ -79,25 +75,22 @@ class Ebr(EstructuraBase):
                     particion_anterior = self
             elif tamano_mayor == 0:
                 particion_anterior = ebr_siguiente
-            ebr_siguiente.crear_particion_siguiente_wf(archivo_binario, particion, final, tamano_mayor, particion_anterior)
+            return ebr_siguiente.crear_particion_siguiente_wf(archivo_binario, particion, final, tamano_mayor, particion_anterior)
 
     def crear_particion_siguiente_ff(self, archivo_binario, particion, final: int):
         if self.siguiente == -1:
             if final < self.start + self.size + particion.size:
-               print("--Error: la particion logica es muy grande--")
-               return
+               return {"status": False, "mensaje": "Error: la particion logica es muy grande\n"}
             self.escribir_siguiente(archivo_binario, particion)
-            print("\n--Particion logica creada--\n")
-            return
+            return {"status": True, "mensaje": "--Particion logica creada--\n"}
         else:
             archivo_binario.seek(self.siguiente)
             ebr_siguiente = Ebr(False, "W", 0, 0, -1, "")
             ebr_siguiente.set_bytes(archivo_binario) # obtengo el ebr siguiente
             if ebr_siguiente.start - self.start + self.size < particion.size:
                 self.escribir_siguiente(archivo_binario, particion)
-                print("\n--Particion logica creada--\n")
-                return
-            ebr_siguiente.crear_particion_siguiente_ff(archivo_binario, particion, final)
+                return {"status": True, "mensaje": "--Particion logica creada--\n"}
+            return ebr_siguiente.crear_particion_siguiente_ff(archivo_binario, particion, final)
         
     # escribir el siguiente ebr    
     def escribir_siguiente(self, archivo_binario, particion):

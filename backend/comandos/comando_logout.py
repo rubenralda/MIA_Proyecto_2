@@ -5,7 +5,5 @@ class Logout(Comando):
     
     def ejecutar(self):
         if cerrar_sesion():
-            print("\n--Sesion cerrada--\n")
-            return True
-        print("--Error: no hay una sesion abierta--")
-        return False
+            return "--Sesion cerrada--\n"
+        return "Error: no hay una sesion abierta\n"

@@ -12,27 +12,21 @@ class Fdisk(Comando):
         size_particion = self.parametros.get("size")
         name = self.parametros.get("name")
         if path_particion == None or name == None:
-            print("--Error: Faltan parametros--")
-            return False
+            return "Error: Faltan parametros\n"
         if not os.path.isfile(path_particion):
-            print("--Error: El disco no existe--")
-            return False
+            return "Error: El disco no existe\n"
         delete = self.parametros.get("delete")
         if delete != None: # eliminar particion
-            # FALTA PONER CONFIRMACION
             if delete.lower() != "full":
-                print("--Error: El valor de delete es incorrecto--")
-                return False
-            with open(path_particion, "rb+") as archivo_binario: #Recupero los valores de mbr
+                return "Error: El valor de delete es incorrecto\n"
+            with open(path_particion, "rb+") as archivo_binario: # Recupero los valores de mbr
                 estruct_mbr = Mbr(0, 0, 0, 0)
                 estruct_mbr.set_bytes(archivo_binario) # valores del mbr recuperados
                 if estruct_mbr.eliminar_particion(name, archivo_binario):
                     archivo_binario.seek(0)
                     archivo_binario.write(estruct_mbr.get_bytes())
-                    print("\n--Particion eliminada--\n")
-                    return True
-            print("--Error: No se pudo eliminar la particion--")
-            return False
+                    return "--Particion eliminada--\n"
+            return "Error: No se pudo eliminar la particion\n"
         add = self.parametros.get("add")
         if add != None:
             match self.parametros.get("unit", "K").upper():
@@ -43,24 +37,19 @@ class Fdisk(Comando):
                 case "M":
                     add *= 1024 * 1024
                 case _:
-                    print("--Error: Valor del parametro unit no valido--")
-                    return False
+                    return "Error: Valor del parametro unit no valido\n"
             with open(path_particion, "rb+") as archivo_binario: #Recupero los valores de mbr
                 estruct_mbr = Mbr(0, 0, 0, 0)
                 estruct_mbr.set_bytes(archivo_binario) # valores del mbr recuperados
                 if estruct_mbr.add_particion(name, archivo_binario, add):
                     archivo_binario.seek(0)
                     archivo_binario.write(estruct_mbr.get_bytes())
-                    print("\n--Actualizacion del espacio exitoso--\n")
-                    return True
-            print("--Error: No se pudo actualizar la particion--")
-            return False
+                    return "--Actualizacion del espacio exitoso--\n"
+            return "Error: No se pudo actualizar la particion\n"
         if size_particion == None:
-            print("--Error: Faltan parametros--")
-            return False
+            return "Error: Faltan parametros\n"
         if size_particion <= 0:
-            print("--Error: El size_particion debe ser mayor a cero--")
-            return False  
+            return "Error: El size_particion debe ser mayor a cero\n"  
         match self.parametros.get("unit", "K").upper():
             case "B":
                 size_particion = size_particion
@@ -69,28 +58,24 @@ class Fdisk(Comando):
             case "M":
                 size_particion *= 1024 * 1024
             case _:
-                print("--Error: Valor del parametro unit no valido--")
-                return False
+                return "Error: Valor del parametro unit no valido\n"
         tipo_particion = self.parametros.get("type", "P").upper()
         if tipo_particion != "P" and tipo_particion != "E" and tipo_particion != "L":
-            print("--Error: Valor del parametro type no es valido--")
-            return False
+            return "Error: Valor del parametro type no es valido\n"
         fit_particion = self.parametros.get("fit", "WF").upper()
         if fit_particion != "BF" and fit_particion != "FF" and fit_particion != "WF":
-            print("--Error: Valor del parametro fit_particion no es valido--")
-            return False
-        fit_particion = fit_particion[0:1] #asi porque es un byte
-        with open(path_particion, "rb+") as archivo_binario: #Recupero los valores de mbr
+            return "Error: Valor del parametro fit_particion no es valido\n"
+        fit_particion = fit_particion[0:1] # asi porque es un byte
+        with open(path_particion, "rb+") as archivo_binario: # Recupero los valores de mbr
             estruct_mbr = Mbr(0, 0, 0, 0)
             estruct_mbr.set_bytes(archivo_binario) # valores del mbr recuperados
             if estruct_mbr.buscar_particion(name, archivo_binario):
-                print("--Error: El nombre ya existe para crear particion--")
-                return False
+                return "Error: El nombre ya existe para crear particion\n"
             # Creamos la particion
-            if estruct_mbr.crear_particion(size_particion, name, tipo_particion, fit_particion, archivo_binario): #modifico el mbr y lo escribo de nuevo
+            crear_particion = estruct_mbr.crear_particion(size_particion, name, tipo_particion, fit_particion, archivo_binario)
+            if crear_particion["status"]: #modifico el mbr y lo escribo de nuevo
                 archivo_binario.seek(0)
                 archivo_binario.write(estruct_mbr.get_bytes())
-                return True
-        return False
+            return crear_particion["mensaje"]
         
         

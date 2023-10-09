@@ -12,23 +12,19 @@ class Mkfile(Comando):
     def ejecutar(self):
         path = self.parametros.get("path")
         if path == None:
-            print("--Error: Faltan parametros--")
-            return False
+            return "Error: Faltan parametros\n"
         size = self.parametros.get("size", 0)
         if size < 0:
-            print("--Error: el size no puede ser negativo")
-            return False
+            return "Error: el size no puede ser negativo\n"
         r = self.parametros.get("r", False)
         usuario = valor_usuario()
         if usuario == None:
-            print("--Error: inicia sesion antes--")
-            return False
+            return "Error: inicia sesion antes\n"
         ruta_cont = self.parametros.get("cont")
         cont = ""
         if ruta_cont != None:
             if not os.path.isfile(ruta_cont):
-                print("--Error: la ruta de cont no existe")
-                return False
+                return "Error: la ruta de cont no existe\n"
             with open(ruta_cont, "r") as archivo_copiar:
                 cont = archivo_copiar.read()
         id_particion = usuario.id_particion
@@ -39,12 +35,10 @@ class Mkfile(Comando):
                     archivo_binario.seek(particion.start)
                     superbloque = SuperBloque(0,0,0)
                     superbloque.set_bytes(archivo_binario)
-                    if superbloque.crear_archivo(archivo_binario, size, path, r, int(usuario.id_user), int(usuario.id_grupo), cont):
+                    creacion = superbloque.crear_archivo(archivo_binario, size, path, r, int(usuario.id_user), int(usuario.id_grupo), cont)
+                    if creacion["status"]:
                         # escribir los cambios del superbloque
                         archivo_binario.seek(particion.start)
                         archivo_binario.write(superbloque.get_bytes())
-                        print("\n--Archivo creado--\n")
-                        return True
-                    return False
-        print("--Error: la particion no ha sido montada--")
-        return False
+                    return creacion["mensaje"]
+        return "Error: la particion no ha sido montada\n"

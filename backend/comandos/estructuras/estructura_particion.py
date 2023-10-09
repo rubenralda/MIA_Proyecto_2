@@ -33,8 +33,7 @@ class Particion(EstructuraBase):
 
     def crear_particion_logica(self, archivo_binario, particion:Ebr):
         if self.tipo != "E":
-            print("--Error: No se puede crear la particion logica--")
-            return False
+            return {"status": False, "mensaje": "Error: No se puede crear la particion logica\n"}
         estructura_ebr = Ebr(False, "W", self.start, 0, -1, "")
         archivo_binario.seek(self.start)
         estructura_ebr.set_bytes(archivo_binario)
@@ -45,17 +44,16 @@ class Particion(EstructuraBase):
             particion.siguiente = estructura_ebr.siguiente
             archivo_binario.seek(self.start)
             archivo_binario.write(particion.get_bytes())
-            print("\n--Particion logica creada--\n")
-            return True
+            return {"status": True, "mensaje": "--Particion logica creada--\n"}
         else:
             tamano_particion = self.start + self.s
             if self.fit == "F":
-                estructura_ebr.crear_particion_siguiente_ff(archivo_binario, particion, tamano_particion)
+                return estructura_ebr.crear_particion_siguiente_ff(archivo_binario, particion, tamano_particion)
             elif self.fit == "B":
-                estructura_ebr.crear_particion_siguiente_bf(archivo_binario, particion, tamano_particion, tamano_particion, estructura_ebr)
+                return estructura_ebr.crear_particion_siguiente_bf(archivo_binario, particion, tamano_particion, tamano_particion, estructura_ebr)
             elif self.fit == "W":
-                estructura_ebr.crear_particion_siguiente_wf(archivo_binario, particion, tamano_particion, 0, estructura_ebr)
-            return True
+                return estructura_ebr.crear_particion_siguiente_wf(archivo_binario, particion, tamano_particion, 0, estructura_ebr)
+            return {"status": False, "mensaje": "Error: Fit inesperado particion logica\n"}
     
     def buscar_particion_logica(self, name: str, archivo_binario):
         if self.tipo != "E":

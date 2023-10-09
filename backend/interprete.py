@@ -22,8 +22,10 @@ from comandos.comando_mkdir import Mkdir
 from comandos.comando_remove import Remove
 from comandos.comando_edit import Edit
 from comandos.comando_rename import Rename
+from comandos.comando_vacio import Vacio
 #-------------------------------ANALIZADOR LEXICO---------------------------------------------------------------------
-errores_lexicos = []
+#errores_lexicos = []
+error = ""
 
 palabras_reservadas = {
     'execute': 'EXECUTE',
@@ -88,7 +90,7 @@ tokens = [
 
 def t_COMMENT(t):
     r'\#.*'
-    print(t.value)
+    #print(t.value)
     # No hacer nada en la acción para ignorar el comentario
     pass
 
@@ -159,8 +161,8 @@ def t_newline(t):
 t_ignore = ' \t'
 
 def t_error(t):
-    errores_lexicos.append(t.value[0])
-    print(f'Caracter no reconocido: {t.value[0]} en la linea {t.lexer.lineno}')
+    global error
+    error = f'Error: Caracter no reconocido, {t.value[0]}\n' # {t.lexer.lineno}
     t.lexer.skip(1)
 
 #-------------------------------ANALIZADOR SINTACTICO---------------------------------------------------------------------
@@ -194,7 +196,7 @@ def p_empty_production(t):
     '''
     empty_production : 
     '''
-    t[0] = None
+    t[0] = Vacio()
 
 #-------comando mkdisk---------
 def p_comando_mkdisk(t):
@@ -699,17 +701,23 @@ precedence = (
 
 # Regla de manejo de errores
 def p_error(p):
+    global error
     if p:
-        print(f"Error de sintaxis en el token '{p.value}' en la línea {p.lineno}, posición {p.lexpos}")
+        error = f"Error: token no esperado '{p.value}'\n" # {p.lineno} {p.lexpos}
     else:
-        print("Error de sintaxis en la entrada")
+        error = "Error: sintaxis incorrecta\n"
 
 lexer = lex.lex()
 
 # llevarla al main
 def parse(input):
-    global errors
     global parser
     parser = yacc.yacc()
     lexer.lineno = 1
     return parser.parse(input)
+
+def errores():
+    global error
+    valor = error
+    error = ""
+    return valor

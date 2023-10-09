@@ -15,8 +15,7 @@ class Rep(Comando):
         id = self.parametros.get("id")
         name = self.parametros.get("name")
         if path_particion == None or name == None or id == None:
-            print("--Error: Faltan parametros--")
-            return False
+            return "Error: Faltan parametros\n"
         # Obtenemos el directorio de la ruta (sin el nombre del archivo)
         carpetas = os.path.dirname(path_particion)
         # Verificar si el directorio no existe y crearlo si es necesario
@@ -33,8 +32,7 @@ class Rep(Comando):
                     if particion.id == id:
                         direccion = particion.path_disco
                 if direccion == "":
-                    print("--Error: El ID no existe--") 
-                    return False
+                    return "Error: El ID no existe para el reporte\n"
                 with open(direccion, "rb") as archivo_binario:
                     estruct_mbr = Mbr(0, 0, 0, 0)
                     estruct_mbr.set_bytes(archivo_binario)
@@ -42,8 +40,8 @@ class Rep(Comando):
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
                     # print(reporte_graphviz)
-                    grafo.render(ruta_final, view= True) # falta quitar el .extension porque se pone doble
-                return True
+                    grafo.render(ruta_final) # falta quitar el .extension porque se pone doble
+                return "--Reporte mbr creado--\n"
             case "disk":
                 particiones = obtener_particiones()
                 direccion = ""
@@ -51,8 +49,7 @@ class Rep(Comando):
                     if particion.id == id:
                         direccion = particion.path_disco
                 if direccion == "":
-                    print("--Error: El ID no existe--")
-                    return False
+                    return "Error: El ID no existe para el reporte\n"
                 with open(direccion, "rb") as archivo_binario:
                     estruct_mbr = Mbr(0, 0, 0, 0)
                     estruct_mbr.set_bytes(archivo_binario)
@@ -61,7 +58,8 @@ class Rep(Comando):
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
                     # print(reporte_graphviz)
-                    grafo.render(ruta_final, view= True) # falta quitar el .extension porque se pone doble
+                    grafo.render(ruta_final) # falta quitar el .extension porque se pone doble
+                return "--Reporte disk creado--\n"
             case "sb":
                 particiones = obtener_particiones()
                 direccion = ""
@@ -71,8 +69,7 @@ class Rep(Comando):
                         direccion = particion.path_disco
                         inicio = particion.start
                 if direccion == "":
-                    print("--Error: El ID no existe--")
-                    return False
+                    return "Error: El ID no existe para el reporte\n"
                 with open(direccion, "rb") as archivo_binario:
                     archivo_binario.seek(inicio)
                     estruct_sb = SuperBloque(0,0,0)
@@ -81,8 +78,8 @@ class Rep(Comando):
                     #print(reporte_graphviz)
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
-                    # print(reporte_graphviz)
-                    grafo.render(ruta_final, view= True) # falta quitar el .extension porque se pone doble
+                    grafo.render(ruta_final)
+                return "--Reporte sb creado--\n"
             case "bm_inode":
                 particiones = obtener_particiones()
                 direccion = ""
@@ -92,8 +89,7 @@ class Rep(Comando):
                         direccion = particion.path_disco
                         inicio = particion.start
                 if direccion == "":
-                    print("--Error: El ID no existe--")
-                    return False
+                    return "Error: El ID no existe para el reporte\n"
                 with open(direccion, "rb") as archivo_binario:
                     archivo_binario.seek(inicio)
                     estruct_sb = SuperBloque(0,0,0)
@@ -101,7 +97,7 @@ class Rep(Comando):
                     reportetxt = estruct_sb.reporte_bm_inodo(archivo_binario)
                     with open(path_particion, "w+") as archivo_reporte:
                         archivo_reporte.write(reportetxt)
-                    #print(reportetxt)
+                return "--Reporte bm_inode creado--\n"
             case "bm_block":
                 particiones = obtener_particiones()
                 direccion = ""
@@ -111,8 +107,7 @@ class Rep(Comando):
                         direccion = particion.path_disco
                         inicio = particion.start
                 if direccion == "":
-                    print("--Error: El ID no existe--")
-                    return False
+                    return "Error: El ID no existe para el reporte\n"
                 with open(direccion, "rb") as archivo_binario:
                     archivo_binario.seek(inicio)
                     estruct_sb = SuperBloque(0,0,0)
@@ -120,7 +115,7 @@ class Rep(Comando):
                     reportetxt = estruct_sb.reporte_bm_bloc(archivo_binario)
                     with open(path_particion, "w+") as archivo_reporte:
                         archivo_reporte.write(reportetxt)
-                    #print(reportetxt) 
+                return "--Reporte bm_block creado--\n"
             case "inode":
                 particiones = obtener_particiones()
                 direccion = ""
@@ -130,8 +125,7 @@ class Rep(Comando):
                         direccion = particion.path_disco
                         inicio = particion.start
                 if direccion == "":
-                    print("--Error: El ID no existe--")
-                    return False
+                    return "Error: El ID no existe para el reporte\n"
                 with open(direccion, "rb") as archivo_binario:
                     archivo_binario.seek(inicio)
                     estruct_sb = SuperBloque(0,0,0)
@@ -140,7 +134,8 @@ class Rep(Comando):
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
                     # print(reporte_graphviz)
-                    grafo.render(ruta_final, view= True) # falta quitar el .extension porque se pone doble
+                    grafo.render(ruta_final)
+                return "--Reporte inode creado--\n"
             case "block":
                 particiones = obtener_particiones()
                 direccion = ""
@@ -150,8 +145,7 @@ class Rep(Comando):
                         direccion = particion.path_disco
                         inicio = particion.start
                 if direccion == "":
-                    print("--Error: El ID no existe--")
-                    return False
+                    return "Error: El ID no existe para el reporte\n"
                 with open(direccion, "rb") as archivo_binario:
                     archivo_binario.seek(inicio)
                     estruct_sb = SuperBloque(0,0,0)
@@ -160,7 +154,8 @@ class Rep(Comando):
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
                     # print(reporte_graphviz)
-                    grafo.render(ruta_final, view= True) # falta quitar el .extension porque se pone doble
+                    grafo.render(ruta_final)
+                return "--Reporte block creado--\n"
             case "tree":
                 particiones = obtener_particiones()
                 direccion = ""
@@ -170,8 +165,7 @@ class Rep(Comando):
                         direccion = particion.path_disco
                         inicio = particion.start
                 if direccion == "":
-                    print("--Error: El ID no existe--")
-                    return False
+                    return "Error: El ID no existe para el reporte\n"
                 with open(direccion, "rb") as archivo_binario:
                     archivo_binario.seek(inicio)
                     estruct_sb = SuperBloque(0,0,0)
@@ -181,7 +175,8 @@ class Rep(Comando):
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
                     # print(reporte_graphviz)
-                    grafo.render(ruta_final, view= True) # falta quitar el .extension porque se pone doble
+                    grafo.render(ruta_final)
+                return "--Reporte tree creado--\n"
             case "file":
                 particiones = obtener_particiones()
                 direccion = ""
@@ -191,23 +186,20 @@ class Rep(Comando):
                         direccion = particion.path_disco
                         inicio = particion.start
                 if direccion == "":
-                    print("--Error: El ID no existe--")
-                    return False
+                    return "Error: El ID no existe para el reporte\n"
                 with open(direccion, "rb") as archivo_binario:
                     archivo_binario.seek(inicio)
                     estruct_sb = SuperBloque(0,0,0)
                     estruct_sb.set_bytes(archivo_binario)
                     ruta = self.parametros.get("ruta")
                     if ruta == None:
-                        print("--Error: falta el parametro ruta")
-                        return False
+                        return "Error: falta el parametro ruta\n"
                     reportetxt = estruct_sb.reporte_file(archivo_binario, ruta)
                     if reportetxt == None:
-                        print("--Error: el archivo no existe")
-                        return False
+                        return "Error: el archivo no existe\n"
                     with open(path_particion, "w+") as archivo_reporte:
                         archivo_reporte.write(reportetxt)
-                        #print(reportetxt)
+                return "--Reporte file creado--\n"
             case "ls":
                 particiones = obtener_particiones()
                 direccion = ""
@@ -217,22 +209,21 @@ class Rep(Comando):
                         direccion = particion.path_disco
                         inicio = particion.start
                 if direccion == "":
-                    print("--Error: El ID no existe--")
-                    return False
+                    return "Error: El ID no existe para el reporte\n"
                 with open(direccion, "rb") as archivo_binario:
                     archivo_binario.seek(inicio)
                     estruct_sb = SuperBloque(0,0,0)
                     estruct_sb.set_bytes(archivo_binario)
                     ruta = self.parametros.get("ruta")
                     if ruta == None:
-                        print("--Error: falta el parametro ruta")
-                        return False
+                        return "Error: falta el parametro ruta\n"
                     reporte_graphviz = estruct_sb.reporte_ls(archivo_binario, ruta)
                     #print(reporte_graphviz)
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
                     # print(reporte_graphviz)
-                    grafo.render(ruta_final, view= True) # falta quitar el .extension porque se pone doble
+                    grafo.render(ruta_final)
+                return "--Reporte ls creado--\n"
             case "journaling":
                 particiones = obtener_particiones()
                 direccion = ""
@@ -242,8 +233,7 @@ class Rep(Comando):
                         direccion = particion.path_disco
                         inicio = particion.start
                 if direccion == "":
-                    print("--Error: El ID no existe--")
-                    return False
+                    return "Error: El ID no existe para el reporte\n"
                 with open(direccion, "rb") as archivo_binario:
                     archivo_binario.seek(inicio)
                     estruct_sb = SuperBloque(0,0,0)
@@ -253,7 +243,7 @@ class Rep(Comando):
                     # la parte de format es para obtener la extension del archivo
                     grafo = Source(reporte_graphviz, format = extension) # os.path.splitext(os.path.basename(path_particion))[1].replace(".", "")
                     # print(reporte_graphviz)
-                    grafo.render(ruta_final, view= True) # falta quitar el .extension porque se pone doble
+                    grafo.render(ruta_final)
+                return "--Reporte journaling creado--\n"
             case _:
-                print("--Error: el valor del parametro name es incorrecto--", name)
-                return False
+                return "Error: el valor del parametro name es incorrecto\n"
