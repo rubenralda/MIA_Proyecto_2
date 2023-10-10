@@ -2,6 +2,7 @@ from interprete import parse, errores
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 from comandos.reportes import reportes
+from comandos.usuario import *
 
 app = Flask(__name__)
 
@@ -29,6 +30,16 @@ def ejecutar_comando():
 def retorno_reportes():
     direcciones = reportes()
     respuesta = {"listado" : direcciones}
+    return jsonify(respuesta)
+
+@cross_origin
+@app.route('/login', methods=['GET'])
+def ver_sesion():
+    respuesta = {"usuario" : None, "idParticion" : None, "idUsuario" : 0}
+    if is_sesion():
+        respuesta["usuario"] = valor_usuario().nombre_user
+        respuesta["idParticion"] = valor_usuario().id_particion
+        respuesta["idUsuario"] = valor_usuario().id_user
     return jsonify(respuesta)
 
 if __name__ == '__main__':

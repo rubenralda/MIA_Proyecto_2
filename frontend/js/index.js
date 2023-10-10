@@ -6,6 +6,8 @@ const inputFile = document.createElement('input');
 const btnAbrir = document.getElementById("abrirArchivo");
 const btnEjecutar = document.getElementById('btnEjecutar')
 const btnReportes = document.getElementById('btnReportes')
+const btnLogin = document.getElementById('btnLogin')
+const btnCerrar = document.getElementById('btnCerrar')
 
 inputFile.type = 'file';
 inputFile.accept = '.adsj';
@@ -25,6 +27,21 @@ document.addEventListener("DOMContentLoaded", (e) => {
         let dispararEvento = new Event("keyup")
         consola.dispatchEvent(dispararEvento)
     }
+    fetch(url + "/login", {
+        method : 'GET',
+        headers : {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then((res) => res.json())
+    .then((res) => {
+        console.log(res)
+        if (res.usuario == null) {
+            btnCerrar.style.display = "none";
+        } else {
+            btnLogin.style.display = "none";
+        }
+    })
     e.stopPropagation;
 });
 
@@ -108,6 +125,25 @@ btnEjecutar.addEventListener("click", async () => {
     consola.value = localStorage.getItem("salida")
 });
 
+btnLogin.addEventListener("click", () => {
+    window.location = "login.html"
+});
+
+btnCerrar.addEventListener("click", () => {
+    fetch(url + "/ejecutar", {
+        method : 'POST',
+        headers : {
+            'Content-Type': 'application/json'
+        },
+        body : JSON.stringify({comando: `logout`})
+    })
+    .then((res) => res.json())
+    .then((res) => {
+        alert(res.mensaje);
+        location.reload();
+    });
+});
+
 btnReportes.addEventListener("click", () => {
     fetch(url + "/reportes", {
         method : 'GET',
@@ -118,5 +154,5 @@ btnReportes.addEventListener("click", () => {
     .then((res) => res.json())
     .then((res) => {
         console.log(res)
-    })
+    });
 });
