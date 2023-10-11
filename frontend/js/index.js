@@ -145,14 +145,5 @@ btnCerrar.addEventListener("click", () => {
 });
 
 btnReportes.addEventListener("click", () => {
-    fetch(url + "/reportes", {
-        method : 'GET',
-        headers : {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then((res) => res.json())
-    .then((res) => {
-        console.log(res)
-    });
+    window.location = "report.html"
 });

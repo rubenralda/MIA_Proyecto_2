@@ -72,7 +72,6 @@ mkfile -r -path=/home/archivos/user/docs/usac/archivos/proyectos/fase1/entrada.t
 
 # ------------------------------| REPORTE 3 |------------------------------------
 rep -id=351Disco1 -path="./home/archivos/reportes/reporte3_tree.jpg" -name=tree
-rep -id=351Disco1 -path=./home/user/reports/report9.txt -ruta=/home/archivos/user/docs/b1.txt -name=file
+rep -id=351Disco1 -path=./home/user/reports/report9.txt -ruta=/home/archivos/user/docs/Tarea3.txt -name=file
 rep -id=351Disco1 -path="./home/archivos/reportes/reporte5_bm_inode.txt" -name=bm_inode
 rep -id=351Disco1 -path="./home/archivos/reportes/reporte5_bm_block.txt" -name=bm_block
-rep -id=351Disco1 -path="./home/archivos/reportes/reporte11_journaling.jpg" -name=journaling

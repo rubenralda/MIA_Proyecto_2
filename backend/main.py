@@ -1,5 +1,5 @@
 from interprete import parse, errores
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS, cross_origin
 from comandos.reportes import reportes
 from comandos.usuario import *
@@ -41,6 +41,14 @@ def ver_sesion():
         respuesta["idParticion"] = valor_usuario().id_particion
         respuesta["idUsuario"] = valor_usuario().id_user
     return jsonify(respuesta)
+
+@cross_origin
+@app.route('/descargarReporte', methods=['POST'])
+def descargar_archivo():
+    respuesta = request.json
+    ruta_archivo = respuesta["ruta"]
+    # Utiliza send_file para enviar el archivo al cliente
+    return send_file(ruta_archivo, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True, port=4000)

@@ -20,7 +20,7 @@ fdisk -type=P -unit=K -name=Part1 -size=7680 -path=./home/archivos/Discos/Disco1
 mount -path=./home/archivos/Discos/Disco1.dsk -name=Part1 #351Disco1
 
 # CREACION DE SISTEMA DE ARCHIVOS
-mkfs -type=full -id=351Disco1 -fs=3fs
+mkfs -type=full -id=351Disco1
 
 # COMANDO PARA MOSTRAR LAS PARTICIONES MONTADAS
 mountlist
@@ -28,4 +28,4 @@ pause
 
 #------------------------REPORTES 1----------------
 rep -id=351Disco1 -path="./home/archivos/reportes/reporte1_sb.jpg" -name=sb
-rep -id=351Disco1 -path="./home/archivos/reportes/reporte1_tree.jpg" -name=tree
+rep -id=351Disco1 -path="./home/archivos/reportes/reporte1_tree.pdf" -name=tree
