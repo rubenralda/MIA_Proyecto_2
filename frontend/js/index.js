@@ -13,7 +13,7 @@ inputFile.type = 'file';
 inputFile.accept = '.adsj';
 inputFile.style.display = 'none';
 document.body.appendChild(inputFile);
-url = 'http://127.0.0.1:4000'
+url = 'http://18.225.248.23:80'
 
 document.addEventListener("DOMContentLoaded", (e) => {
     e.preventDefault;

@@ -1,5 +1,5 @@
 const btnLogin = document.getElementById('btnLogin');
-url = 'http://127.0.0.1:4000'
+url = 'http://18.225.248.23:80'
 
 btnLogin.addEventListener("click", async () => {
     let idParticion = document.getElementById("idParticion").value

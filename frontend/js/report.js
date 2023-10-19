@@ -1,7 +1,7 @@
 const btn = document.getElementsByName('btnreporte')
 const listado = document.getElementById('direcciones')
 
-url = 'http://127.0.0.1:4000'
+url = 'http://18.225.248.23:80'
 
 document.addEventListener("DOMContentLoaded", () => {
     fetch(url + "/reportes", {
