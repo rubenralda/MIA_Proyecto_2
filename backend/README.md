@@ -1,6 +1,6 @@
 # Comandos y paquetes utilizados
 
-# Maquina virtual CS2
+# Maquina virtual EC2
 Se puede conectar a una instancia desde el navegador u otra forma
 ## En vm instalar python y herramientas necesarias
 con root para que pueda crear los reportes:
